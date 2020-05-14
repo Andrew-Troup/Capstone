@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoreApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Capstone Project" Height="800" Width="1500">
+    <Window.BindingGroup>
+        <BindingGroup x:Name="test"/>
+    </Window.BindingGroup>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top" Height="13" Background="WhiteSmoke">
+            <ToolBar >
+                
+            </ToolBar>
+        </ToolBarTray>
+               
+        <Grid DockPanel.Dock="Top" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton DockPanel.Dock="Top"
+                HorizontalAlignment="Left"                
+                VerticalAlignment="Top"
+                x:Name="studentRecordRadioButton"
+                Margin="2"
+                Width="Auto"
+                Height="20"
+                Style="{StaticResource {x:Type ToggleButton}}"
+                Grid.Column="0" Checked="studentRecordRadioButton_Checked">Student Record</RadioButton>
+            
+            <RadioButton DockPanel.Dock="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                x:Name="classRecordRadioButton"
+                Margin="2"
+                Width="Auto"
+                Height="20"
+                Style="{StaticResource {x:Type ToggleButton}}"
+                Grid.Column="1" Checked="classRecordRadioButton_Checked">Class Records</RadioButton>
+            <RadioButton DockPanel.Dock="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                x:Name="courseRecordRadioButton"
+                Margin="2"
+                Width="Auto"
+                Height="20"
+                Style="{StaticResource {x:Type ToggleButton}}"
+                Grid.Column="2" Checked="courseRecordRadioButton_Checked">Course Records</RadioButton>
+        </Grid>
 
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" MinWidth="300"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel x:Name="leftSideFrame" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <GridSplitter Grid.Column="1"
+                          VerticalAlignment="Stretch"
+                          Background="LightGray" 
+                          Width="3"
+                          ResizeBehavior="PreviousAndNext"
+                          ResizeDirection="Columns"/>
+            <DockPanel x:Name="rightSideFrame" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+    </DockPanel>
 </Window>
