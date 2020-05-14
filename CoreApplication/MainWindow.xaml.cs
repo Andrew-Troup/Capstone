@@ -34,8 +34,8 @@ namespace CoreApplication
         {
             leftSideFrame.Children.Clear();
             StudentRecordLayout record = new StudentRecordLayout();
-            record.StudentsRecord = new Models.Student_Record.StudentRecord(115.0, 3.4, "cs", new List<string>() { "Andrew I need to test length", "is", "a", "God"},
-                new List<string>() { "this", "is", "Andrew", "Troup"}, "Andrew", "Troup", "11111", "Andrew.Troup");
+            //record.StudentsRecord = new Models.Student_Record.StudentRecord(115.0, 3.4, "cs", new List<string>() { "Andrew I need to test length", "is", "a", "God"},
+            //    new List<string>() { "this", "is", "Andrew", "Troup"}, "Andrew", "Troup", "11111", "Andrew.Troup");
             leftSideFrame.Children.Add(record);
         }
 
@@ -45,14 +45,14 @@ namespace CoreApplication
 
         private void courseRecordRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            leftSideFrame.Children.Clear();
+            /*leftSideFrame.Children.Clear();
             CourseRecordLayout record = new CourseRecordLayout();
-            leftSideFrame.Children.Add(record);
+            leftSideFrame.Children.Add(record);*/
 
             rightSideFrame.Children.Clear();
             CourseRecordListView listView = new CourseRecordListView();
             rightSideFrame.Children.Add(listView);
-            
+            //rightSideFrame.Children[0].
         }
     }
 }
