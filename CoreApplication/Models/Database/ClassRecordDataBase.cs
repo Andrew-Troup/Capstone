@@ -10,8 +10,15 @@ namespace CoreApplication.Models.Database
     {
         private const string _collection = "Class";
         private const string _dataBase = "Records";
+
+        /// <summary>
+        /// Name of the collection we are accessing
+        /// </summary>
         public string CollectionName { get => _collection; }
 
+        /// <summary>
+        /// Name of the database we are accessing.
+        /// </summary>
         public string DataBaseName { get => _dataBase; }
 
     }

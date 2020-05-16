@@ -1,38 +1,118 @@
-﻿using System;
+﻿using CoreApplication.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
 namespace CoreApplication.Models.Student_Record
 {
-    class StudentPersonalInformation
+    class StudentPersonalInformation : UpdateDatabase
     {
+        #region Variables
+
+        private string _email;
+
+        private string _firstName;
+
+        private string _lastName;
+
+        private string _middleName;
+
+        private string _studentID;
+
+        private string _dob;
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Current Student's email
         /// </summary>
-        public string Email { get; set; }
+        public string Email 
+        { 
+            get => _email; 
+            set
+            {
+                _email = value;
+                RaiseUpdateDatabase($"Email:{_email}");
+            }
+        }
 
         /// <summary>
         /// Current student's first name
         /// </summary>
-        public string FirstName { get; set; }
+        public string FirstName
+        {
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                RaiseUpdateDatabase($"FirstName:{_firstName}");
+            }
+        }
 
         /// <summary>
         /// Current student's last name
         /// </summary>
-        public string LastName { get; set; }
+        public string LastName 
+        {
+            get => _lastName;
+            set 
+            {
+                _lastName = value;
+                RaiseUpdateDatabase($"LastName:{_lastName}");
+            }
+        }
+
+        /// <summary>
+        /// Current student's middle name
+        /// </summary>
+        public string MiddleName
+        {
+            get => _middleName;
+            set
+            {
+                _middleName = value;
+                RaiseUpdateDatabase($"MiddleName:{_middleName}");
+            }
+        }
 
         /// <summary>
         /// Current student's ID
         /// </summary>
-        public string StudentID { get; set; }
-
-        public StudentPersonalInformation(string firstName, string lastName, string studentID, string email)
+        public string StudentID 
         {
-            FirstName = firstName;
-            LastName = lastName;
-            StudentID = studentID;
-            Email = email;
+            get => _studentID;
+            set 
+            {
+                _studentID = value;
+                RaiseUpdateDatabase($"StudentID:{_studentID}");
+            }
+        }
+
+        /// <summary>
+        /// date of birth of the student.
+        /// </summary>
+        public string DOB
+        {
+            get => _dob;
+            set
+            {
+                _dob = value;
+                RaiseUpdateDatabase($"DOB:{_dob}");
+            }
+        }
+        #endregion
+
+        public StudentPersonalInformation(string firstName, string middleName, string lastName, string studentID, string email, string dob)
+        {
+            _firstName = firstName;
+            _middleName = middleName;
+            _lastName = lastName;
+            _studentID = studentID;
+            _email = email;
+            _dob = dob;
         }
 
         public StudentPersonalInformation()

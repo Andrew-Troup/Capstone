@@ -14,15 +14,15 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <DataGridColumnHeader Grid.Row="0"  Background="LightGray"/>
@@ -51,7 +51,7 @@
                              Background="White" 
                              Text="{Binding FirstName, Mode=TwoWay}" 
                              TabIndex="0"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Middle Name" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -60,7 +60,7 @@
                              Background="White" 
                              Text="{Binding MiddleName, Mode=TwoWay}" 
                              TabIndex="1"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Last Name" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -69,7 +69,7 @@
                              Background="White" 
                              Text="{Binding LastName, Mode=TwoWay}" 
                              TabIndex="2"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="3" Grid.Column="0" Content="Student ID" VerticalAlignment="Center" HorizontalAlignment="Left" />
@@ -78,7 +78,7 @@
                              Background="White" 
                              Text="{Binding StudentID, Mode=TwoWay}" 
                              TabIndex="3"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="4" Grid.Column="0" Content="Email" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -87,7 +87,7 @@
                              Background="White" 
                              Text="{Binding Email, Mode=TwoWay}" 
                              TabIndex="4"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="5" Grid.Column="0" Content="Date of Birth" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -96,15 +96,21 @@
                              Background="White" 
                              Text="{Binding DOB, Mode=TwoWay}" 
                              TabIndex="5"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"/>
                 </Border>
             </Grid>
+            
+            <Border Grid.Row="4" BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ToggleButton x:Name="editPersonalInformationToggleButton" 
+                              Content="Edit" 
+                              TabIndex="9"/>
+            </Border>
+            
+            <DataGridColumnHeader Grid.Row="5"  Background="LightGray"/>
 
-            <DataGridColumnHeader Grid.Row="4"  Background="LightGray"/>
+            <Label Grid.Row="6" Content="Academic Information" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <Label Grid.Row="5" Content="Academic Information" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-            <Grid Grid.Row="6" x:Name="academicInformationGrid">
+            <Grid Grid.Row="7" x:Name="academicInformationGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
@@ -121,7 +127,7 @@
                              Background="White" 
                              Text="{Binding GPA, Mode=TwoWay}" 
                              TabIndex="6"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editAcademicInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Total Units"/>
@@ -130,22 +136,23 @@
                              Background="White" 
                              Text="{Binding TotalUnits, Mode=TwoWay}" 
                              TabIndex="7"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"/>
+                             IsEnabled="{Binding ElementName=editAcademicInformationToggleButton, Path=IsChecked}"/>
                 </Border>
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Major"/>
                 <Border Grid.Row="2" Grid.Column="1" BorderThickness="2">
-                    <TextBox x:Name="majorTextBox" 
+                    <ComboBox x:Name="majorComboBox" 
                              Background="White" 
-                             Text="{Binding Major, Mode=TwoWay}" TabIndex="8"
-                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
+                             SelectedValue="{Binding Major, Mode=TwoWay}" 
+                             TabIndex="8"
+                             IsEnabled="{Binding ElementName=editAcademicInformationToggleButton, Path=IsChecked}"                             
                              />
                 </Border>
             </Grid>
 
-            <Label Grid.Row="7" Content="Completed Classes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Grid.Row="8" Content="Completed Classes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <Border Grid.Row="8" BorderThickness="2" Height="200">
+            <Border Grid.Row="9" BorderThickness="2" Height="200">
                 <ListView x:Name="completedClasesListView">
                     <ListView.View>
                         <GridView>
@@ -156,20 +163,20 @@
                 </ListView>
             </Border>
 
-            <DataGridColumnHeader Grid.Row="9"  Background="LightGray"/>
-
-            <Border Grid.Row="10" BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <ToggleButton x:Name="editInformationToggleButton" Content="Edit" TabIndex="9"/>
+            <DataGridColumnHeader Grid.Row="10"  Background="LightGray"/>
+            <Border Grid.Row="11" BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ToggleButton x:Name="editAcademicInformationToggleButton" 
+                              Content="Edit" 
+                              TabIndex="9" />
             </Border>
-
-            <Border Grid.Row="11" BorderThickness="5" HorizontalAlignment="center" VerticalAlignment="Center">
+            
+            <Border Grid.Row="12" BorderThickness="5" HorizontalAlignment="center" VerticalAlignment="Center">
                 <Button Content="Register Student" 
                         x:Name="registerStudentTextBlock"                          
                         TabIndex="10" 
                         />
             </Border>
 
-            <DataGridColumnHeader Grid.Row="12"  Background="LightGray"/>
         </Grid>
     </DockPanel>
 </UserControl>

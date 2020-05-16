@@ -4,19 +4,21 @@ using System.Text;
 
 namespace CoreApplication.Models.Student_Record
 {
-    class ClassDepartmentPair
+    class ClassTakenInformation
     {
         public string Class { get; set; }
 
         public string Department { get; set; }
 
-        public ClassDepartmentPair(string classz, string departments)
+        public string Grade { get; set; }
+        public ClassTakenInformation(string classz, string departments, string grade)
         {
             Class = classz;
             Department = departments;
+            Grade = grade;
         }
 
-        public ClassDepartmentPair()
+        public ClassTakenInformation()
         {
            
         }

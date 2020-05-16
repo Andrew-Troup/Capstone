@@ -20,7 +20,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <RadioButton DockPanel.Dock="Top"
                 HorizontalAlignment="Left"                
@@ -35,21 +34,12 @@
             <RadioButton DockPanel.Dock="Top"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                x:Name="classRecordRadioButton"
-                Margin="2"
-                Width="Auto"
-                Height="20"
-                Style="{StaticResource {x:Type ToggleButton}}"
-                Grid.Column="1" Checked="classRecordRadioButton_Checked">Class Records</RadioButton>
-            <RadioButton DockPanel.Dock="Top"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
                 x:Name="courseRecordRadioButton"
                 Margin="2"
                 Width="Auto"
                 Height="20"
                 Style="{StaticResource {x:Type ToggleButton}}"
-                Grid.Column="2" Checked="courseRecordRadioButton_Checked">Course Records</RadioButton>
+                Grid.Column="2" Checked="courseRecordRadioButton_Checked">Class and Course Records</RadioButton>
         </Grid>
 
         <Grid>
