@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="CoreApplication.User_Interfaces.Right_Sides.CourseRecordListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoreApplication.User_Interfaces"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <DockPanel>
+        <ListView x:Name="courseRecordListView" Background="AliceBlue">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Course Identification" DisplayMemberBinding="{Binding CourseID}"/>
+                    <GridViewColumn Header="Course Name" DisplayMemberBinding="{Binding CourseName}"/>
+                    <GridViewColumn Header="Credit Hours" DisplayMemberBinding="{Binding CreditHours}"/>
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Associated Class" DisplayMemberBinding="{Binding AssociatedClass}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

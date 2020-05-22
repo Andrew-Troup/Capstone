@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CoreApplication.Models.Base.ValueChangedArgs" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Base\UpdateDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Base.UpdateDatabase">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="CoreApplication.Models.Base.UpdateDatabase.UpdateDatabaseHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Base\UpdateDatabase.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Base\UpdateDatabase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ValueChangedArgs" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CoreApplication.Models.CourseAndClass.CourseRecordInformation">
+    <Position X="5.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAAQAAAAgAABEAAAAAAAAAAAgAAQAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\CourseAndClass\CourseRecordInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Student_Record.StudentAcademicInformation">
+    <Position X="3" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQBCAAAAIAAAAACAAAIAAAAAAEAAAAgACAAAAA=</HashCode>
+      <FileName>Models\Student Record\StudentAcademicInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Student_Record.StudentPersonalInformation">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEAACCIAAAAAAAEQIAAAAAAAAAAACAAAAAACAAk=</HashCode>
+      <FileName>Models\Student Record\StudentPersonalInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.CourseAndClass.OnlineClassRecordInformation">
+    <Position X="7" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\CourseAndClass\OnlineClassRecordInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.CourseAndClass.FaceToFaceClassRecordInformation">
+    <Position X="4.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAABAAAgAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseAndClass\FaceToFaceClassRecordInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoreApplication"
         mc:Ignorable="d"
-        Title="Capstone Project" Height="800" Width="1500">
+        Title="Capstone Project" Height="1000" Width="1500">
     <Window.BindingGroup>
         <BindingGroup x:Name="test"/>
     </Window.BindingGroup>
@@ -44,7 +44,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300" MinWidth="300"/>
+                <ColumnDefinition Width="Auto" MinWidth="300"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>

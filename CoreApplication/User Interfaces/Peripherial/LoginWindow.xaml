@@ -1,0 +1,82 @@
+﻿<Window x:Class="CoreApplication.User_Interfaces.Peripherial.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoreApplication.User_Interfaces.Peripherial"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="300" Width="200">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom" BorderThickness="2">
+            <Button x:Name="loginButton" Content="Login"  Width="80"/>
+        </Border>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="User Name"/>
+                <Border Grid.Row="0" Grid.Column="1" BorderThickness="2">
+                    <TextBox x:Name="userNameTextBox"/>
+                </Border>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Password"/>
+                <Border Grid.Row="1" Grid.Column="1" BorderThickness="2">
+                    <TextBox x:Name="passwordTextBox"/>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Tag="Forgot Passowrd?" 
+                       HorizontalContentAlignment="Center">
+
+                       <TextBlock TextDecorations="Underline"
+                                  PreviewMouseDown="ForgotPassword_PreviewMouseDown"                                       
+                                  FontSize="10"
+                                  Foreground="DarkBlue"
+                                  Text="{Binding Path=Tag, 
+                                  RelativeSource={RelativeSource Mode=FindAncestor,
+                                  AncestorType={x:Type Label}}}" 
+                                  />
+                </Label>
+
+                <Label Tag="Create Account"
+                       Grid.Column="1"
+                       HorizontalContentAlignment="Center">
+
+                    <TextBlock TextDecorations="Underline"
+                               PreviewMouseDown="CreateAccount_PreviewMouseDown"
+                               FontSize="10"
+                               Foreground="DarkBlue"
+                               Text="{Binding Path=Tag, 
+                               RelativeSource={RelativeSource Mode=FindAncestor,
+                               AncestorType={x:Type Label}}}" 
+                               />
+                </Label>
+            </Grid>
+
+            <DockPanel Grid.Row="2" x:Name="subContentFrame"/>
+        </Grid>
+       
+    </DockPanel>
+</Window>

@@ -16,6 +16,14 @@ namespace CoreApplication.Models.Base
 
         public event UpdateDatabaseHandler Value_Changed;
 
+        public ValueChangedArgs ValueChangedArgs
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         protected virtual void RaiseUpdateDatabase(string value)
         {
             Value_Changed?.Invoke(this, new ValueChangedArgs(value));

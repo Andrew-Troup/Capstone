@@ -1,8 +1,12 @@
 ﻿namespace CoreApplication
 {
+    using CoreApplication.ModelHandlers;
     using CoreApplication.ModelHandlers.Database;
     using CoreApplication.ModelHandlers.Records;
     using CoreApplication.User_Interfaces;
+    using CoreApplication.User_Interfaces.Left_Sides;
+    using CoreApplication.User_Interfaces.Peripherial;
+    using CoreApplication.User_Interfaces.Right_Sides;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,11 +31,11 @@
         public MainWindow()
         {
             InitializeComponent();
-            //LoginWindow window = new LoginWindow();
-            //window.Show();
+            Show();
+            LoginWindow window = new LoginWindow();
+            window.ShowDialog();
 
             studentRecordRadioButton.IsChecked = true;
-
         }
 
         private void studentRecordRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -41,12 +45,17 @@
             leftSideFrame.Children.Add(record);
 
             rightSideFrame.Children.Clear();
-            StudentRecordListView listView = new StudentRecordListView();
-            rightSideFrame.Children.Add(listView);
-        }
-
-        private void classRecordRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
+            if (!MainHandlers.WindowManager.IsAdmin)
+            {                               
+                StudentRecordListView listView = new StudentRecordListView();
+                rightSideFrame.Children.Add(listView);
+            }
+            else
+            {
+                AdminStudentListView listView = new AdminStudentListView();
+                rightSideFrame.Children.Add(listView);
+            }
+            
         }
 
         private void courseRecordRadioButton_Checked(object sender, RoutedEventArgs e)
