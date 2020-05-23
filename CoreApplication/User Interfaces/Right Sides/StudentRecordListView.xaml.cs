@@ -1,6 +1,6 @@
 ﻿using CoreApplication.ModelHandlers;
 using CoreApplication.ModelHandlers.Records;
-using CoreApplication.Models.Records.Student_Record;
+using CoreApplication.Models.Records.Student;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,10 +29,10 @@ namespace CoreApplication.User_Interfaces.Right_Sides
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {            
-            foreach (ClassTakenInformation pair in ((StudentRecordViewHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.TakenClasses)
+            foreach (ClassTakenInformation pair in ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.TakenClasses)
                 studentRecordListView.Items.Add(pair);
 
-            foreach (ClassTakenInformation pair in ((StudentRecordViewHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.CurrentClasses)
+            foreach (ClassTakenInformation pair in ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.CurrentClasses)
                 studentRegisteredClassesListView.Items.Add(pair);
         }
     }

@@ -16,7 +16,6 @@
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
-    using static CoreApplication.ModelHandlers.Database.DatabaseCommunications;
 
     /// <summary>
     /// Interaction logic for CreateAccountUserControl.xaml
@@ -58,7 +57,7 @@
                     {"writeConcern", writeConcern.ToBsonDocument() } 
                 };
 
-                MainHandlers.Database.RecordsDatabase.RunCommand<BsonDocument>(temp);
+                MainHandlers.DatabaseHandler.Database.RecordsDatabase.RunCommand<BsonDocument>(temp);
                 Background = Brushes.Green;
                 Thread.Sleep(300);
                 Background = Brushes.White;              

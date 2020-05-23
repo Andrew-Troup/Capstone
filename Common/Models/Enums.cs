@@ -18,6 +18,7 @@ namespace Common.Models
 
     public enum Collections
     {
+        Admins,
         Students,
         Classes,
         Users

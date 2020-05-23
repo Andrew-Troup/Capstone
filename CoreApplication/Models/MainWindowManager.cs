@@ -1,16 +1,16 @@
 ﻿namespace CoreApplication.Models
 {
+    using Common.Models;
+    using Common.Models.Login;
     using CoreApplication.ModelHandlers;
     using CoreApplication.ModelHandlers.Records;
     using CoreApplication.ModelHandlers.Records.Base;
     using CoreApplication.Models.Base;
-    using CoreApplication.Models.Database;
     using MongoDB.Bson;
     using MongoDB.Driver;
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using static CoreApplication.ModelHandlers.Database.DatabaseCommunications;
 
     class MainWindowManager
     {
@@ -45,12 +45,20 @@
 
         public MainWindowManager()
         {
-            //CurrentUser = new UserLoginInformation("Andrew-Troup", "andrew");
-            //CurrentUser.UserType = UserTypes.Admin;
+            // TODO this is trash
+            CurrentUser = new UserLoginInformation("Andrew-Troup", "andrew");
+            CurrentUser.UserType = UserTypes.Admin;
             ViewStorage = new Dictionary<ActiveControls, object>();
 
-           // var filter = Builders<BsonDocument>.Filter.Eq("StudentID", "1236433");
-            //ViewHandler = new StudentRecordViewHandler(MainHandlers.Database.GetCollection(Collections.Students).Find(filter).FirstOrDefault());
+
+            if (!IsAdmin)
+            {
+                // CurrentUser.UserID
+                ViewHandler = new StudentRecordHandler(MainHandlers.DatabaseHandler.GetStudent("725571"));
+            }
+            else
+                // CurrentUser.UserID
+                ViewHandler = new AdminRecordHandler(MainHandlers.DatabaseHandler.GetAdmin("65986"));
         }
     }
 }

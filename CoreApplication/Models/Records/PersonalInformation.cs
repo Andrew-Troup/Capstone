@@ -84,11 +84,6 @@
         public string ID 
         {
             get => _ID;
-            set 
-            {
-                _ID = value;
-                RaiseUpdateDatabase($"StudentID:{_ID}");
-            }
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿namespace CoreApplication
 {
     using CoreApplication.ModelHandlers;
-    using CoreApplication.ModelHandlers.Database;
     using CoreApplication.ModelHandlers.Records;
     using CoreApplication.User_Interfaces;
     using CoreApplication.User_Interfaces.Left_Sides;
@@ -32,8 +31,8 @@
         {
             InitializeComponent();
             Show();
-            LoginWindow window = new LoginWindow();
-            window.ShowDialog();
+            //LoginWindow window = new LoginWindow();
+            //window.ShowDialog();
 
             studentRecordRadioButton.IsChecked = true;
         }

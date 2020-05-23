@@ -98,7 +98,8 @@
 
         public StudentAcademicInformation()
         {
-
+            _takenClasses = new List<ClassTakenInformation>();
+            _currentClasses = new List<ClassTakenInformation>();
         }
 
         private void PopulateClassesTaken(BsonArray classesTaken, BsonArray currentClasses)

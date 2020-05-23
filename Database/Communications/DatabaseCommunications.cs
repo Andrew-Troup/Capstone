@@ -8,7 +8,7 @@
     using System.Collections.Generic;
     using System.Text;
 
-    class DatabaseCommunications
+    public class DatabaseCommunications
     {
         #region Constants
 
@@ -33,8 +33,7 @@
         {
             //Default:Default
             Client = new MongoClient($"mongodb+srv://Andrew-Troup:Airforce!@student-classcourserecords-ejxro.azure.mongodb.net/test?retryWrites=true&w=majority");
-            Client.Cluster.StartSession();
-            RecordsDatabase = Client.GetDatabase(_databaseKey);
+            RecordsDatabase = Client.GetDatabase(_databaseName);
         }
 
         #region Methods
@@ -42,7 +41,8 @@
         public IMongoCollection<BsonDocument> GetCollection(Collections type)
         {
             string value = type.ToString();
-            return RecordsDatabase.GetCollection<BsonDocument>(value);
+            IMongoCollection<BsonDocument> collection = RecordsDatabase.GetCollection<BsonDocument>(value);
+            return collection;
         }
 
         public void Login(UserLoginInformation user)
@@ -55,6 +55,7 @@
             catch(Exception)
             {
                 // DOes nothing since the login information failed.
+                // TODO: The login window will call this information, I need to figure out how to set it up so that if it does not connect we reset the login infromation on the UI
             }
         }
 

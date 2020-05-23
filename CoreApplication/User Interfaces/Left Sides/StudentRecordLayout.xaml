@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CoreApplication.User_Interfaces"
              mc:Ignorable="d" 
              Background="AliceBlue"
              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -312,9 +311,9 @@
                 <Border Grid.Row="3" Grid.Column="1" BorderThickness="2">
                     <TextBox x:Name="studentIdTextBox" 
                              Background="White" 
-                             Text="{Binding ID, Mode=TwoWay}" 
+                             Text="{Binding ID, Mode=OneWay}" 
                              TabIndex="3"
-                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}" Height="22" VerticalAlignment="Top"/>
+                             IsEnabled="False" Height="22" VerticalAlignment="Top"/>
                 </Border>
 
                 <Label Grid.Row="4" Grid.Column="0" Content="Email" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -339,7 +338,8 @@
             <Border Grid.Row="4" BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <ToggleButton x:Name="editPersonalInformationToggleButton" 
                               Content="Edit" 
-                              TabIndex="9"/>
+                              TabIndex="9" 
+                              Click="ToggleButton_Checked"/>
             </Border>
             
             <DataGridColumnHeader Grid.Row="5"  Background="LightGray"/>
@@ -429,7 +429,8 @@
             <Border Grid.Row="11" BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <ToggleButton x:Name="editAcademicInformationToggleButton" 
                               Content="Edit" 
-                              TabIndex="9" />
+                              TabIndex="9" 
+                              Click="ToggleButton_Checked"/>
             </Border>
             
             <Border Grid.Row="12" BorderThickness="5" HorizontalAlignment="center" VerticalAlignment="Center">
