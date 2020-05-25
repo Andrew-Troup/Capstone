@@ -1,9 +1,11 @@
 ﻿namespace CoreApplication.Models.Records.Student
 {
     using CoreApplication.Models.Base;
+    using CoreApplication.Models.Records.Student.Support;
     using MongoDB.Bson;
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Text;
 
     class StudentAcademicInformation : UpdateDatabase
@@ -16,22 +18,9 @@
 
         private string _major;
 
-        private List<ClassTakenInformation> _takenClasses;
-
-        private List<ClassTakenInformation> _currentClasses;
-
         #endregion
 
         #region Properties
-
-        public List<ClassTakenInformation> CurrentClasses
-        {
-            get => _currentClasses;
-            set
-            {
-                _currentClasses = value;                
-            }
-        }
 
         /// <summary>
         /// Student's GPA
@@ -71,25 +60,15 @@
                 RaiseUpdateDatabase($"Major:{_major}");
             }
         }
+        
 
-        /// <summary>
-        /// A list of the classes taken by the student
-        /// </summary>
-        public List<ClassTakenInformation> TakenClasses 
-        { 
-            get => _takenClasses; 
-            private set
-            {
-                _takenClasses = value;
-            }                
-        }
+        public ObservableCollection<TypeClassesPair> AllClasses { get; private set; }
 
         #endregion
 
         public StudentAcademicInformation(string gpa, string totalUnits, string major, BsonArray classesTaken, BsonArray grades)
         {
-            _takenClasses = new List<ClassTakenInformation>();
-            _currentClasses = new List<ClassTakenInformation>();
+            AllClasses = new ObservableCollection<TypeClassesPair>();
             GPA = gpa;
             TotalUnits = totalUnits;
             Major = major;
@@ -98,24 +77,28 @@
 
         public StudentAcademicInformation()
         {
-            _takenClasses = new List<ClassTakenInformation>();
-            _currentClasses = new List<ClassTakenInformation>();
+            AllClasses = new ObservableCollection<TypeClassesPair>();
         }
 
         private void PopulateClassesTaken(BsonArray classesTaken, BsonArray currentClasses)
         {
-            foreach(BsonDocument taken in classesTaken)                      
-                _takenClasses.Add(new ClassTakenInformation(taken[0].AsString, taken[1].AsString));            
-                
+            ObservableCollection<ClassTakenInformation> ClassTaken = new ObservableCollection<ClassTakenInformation>();
+            foreach(BsonDocument taken in classesTaken)
+                ClassTaken.Add(new ClassTakenInformation(taken[0].AsString, taken[1].AsString));
 
-           foreach(BsonDocument current in currentClasses)
-           {
+
+            ObservableCollection<ClassTakenInformation> currentClass = new ObservableCollection<ClassTakenInformation>();
+            foreach(BsonDocument current in currentClasses)
+            {
                 if(current.ElementCount == 1)
-                    _currentClasses.Add(new ClassTakenInformation(current[0].AsString, string.Empty));
+                    currentClass.Add(new ClassTakenInformation(current[0].AsString, string.Empty));
                 else
-                    _currentClasses.Add(new ClassTakenInformation(current[0].AsString, current[1].AsString));
+                    currentClass.Add(new ClassTakenInformation(current[0].AsString, current[1].AsString));
             }
-                
+
+            AllClasses.Add(new TypeClassesPair("Completed Classes", ClassTaken));
+            AllClasses.Add(new TypeClassesPair("Current Classes", currentClass));
+            AllClasses.Add(new TypeClassesPair("Registered Classes", new ObservableCollection<ClassTakenInformation>()));
         }
     }
 }

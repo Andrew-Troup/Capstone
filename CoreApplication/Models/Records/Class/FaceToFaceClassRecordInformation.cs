@@ -1,6 +1,7 @@
 ﻿namespace CoreApplication.Models.Records.Class
 {
     using CoreApplication.Models.Base;
+    using MongoDB.Bson;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -46,10 +47,10 @@
         #endregion
 
 
-        public FaceToFaceClassRecordInformation(string classRoom, string classBuilding, string courseID, string courseName, string creditHours, string description) : base(courseID, courseName, creditHours, description)
+        public FaceToFaceClassRecordInformation(BsonDocument document) : base(document[2].AsString, document[3].AsString, document[4].AsBsonDocument)
         {
-            _classBuilding = classBuilding;
-            _classRoom = classRoom;
+            _classBuilding = document[0].AsString;
+            _classRoom = document[1].AsString;
         }
 
         public FaceToFaceClassRecordInformation() : base()

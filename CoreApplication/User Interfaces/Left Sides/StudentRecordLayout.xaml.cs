@@ -53,9 +53,8 @@
             StudentRecordHandler handler = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent;
             studentInformationGrid.DataContext = handler.PersonalInformation;
             academicInformationGrid.DataContext = handler.AcademicInformation;
-            completedClasesListView.ItemsSource = handler.AcademicInformation.TakenClasses;
-            currentClassesListView.ItemsSource = handler.AcademicInformation.CurrentClasses;
-
+            completedClasesListView.ItemsSource = handler.AcademicInformation.AllClasses[0].Classes;
+            currentClassesListView.ItemsSource = handler.AcademicInformation.AllClasses[1].Classes;
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)

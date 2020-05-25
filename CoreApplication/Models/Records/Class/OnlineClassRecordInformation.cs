@@ -1,6 +1,7 @@
 ﻿namespace CoreApplication.Models.Records.Class
 {
     using CoreApplication.Models.Base;
+    using MongoDB.Bson;
     using System;
     using System.Collections.Generic;
     using System.Security.RightsManagement;
@@ -28,9 +29,9 @@
 
         #endregion
 
-        public OnlineClassRecordInformation(string classUrl, string courseID, string courseName, string creditHours, string description) : base(courseID, courseName, creditHours, description)
+        public OnlineClassRecordInformation(BsonDocument document) : base(document[1].AsString, document[2].AsString, document[3].AsBsonDocument)
         {
-            _classUrl = classUrl;
+            _classUrl = document[0].AsString;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace CoreApplication.Models.Records.Class
 {
     using CoreApplication.Models.Base;
+    using MongoDB.Bson;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -16,6 +17,10 @@
         private string _creditHours;
 
         private string _description;
+
+        private string _startDate;
+
+        private string _endDate;
 
         #endregion
 
@@ -73,15 +78,42 @@
             }
         }
 
+        /// <summary>
+        /// /The start date for the class
+        /// </summary>
+        public string StartDate
+        {
+            get => _startDate;
+            set
+            {
+                _startDate = value;
+                RaiseUpdateDatabase($"BeginDate:{_startDate}");
+            }
+        }
+
+        /// <summary>
+        /// End date for the course
+        /// </summary>
+        public string EndDate
+        {
+            get => _endDate;
+            set
+            {
+                _endDate = value;
+                RaiseUpdateDatabase($"EndDate:{_endDate}");
+            }
+        }
 
         #endregion
 
-        public CourseRecordInformation(string courseID, string courseName, string creditHours, string description)
+        public CourseRecordInformation(string beginDate, string endDate, BsonDocument document)
         {
-            _courseID = courseID;
-            _courseName = courseName;
-            _creditHours = creditHours;
-            _description = description;
+            _startDate = beginDate;
+            _endDate = endDate;
+            _courseName = document[0].AsString;
+            _courseID = document[1].AsString;
+            _creditHours = document[2].AsString;
+            _description = document[3].AsString;
         }
 
         public CourseRecordInformation()

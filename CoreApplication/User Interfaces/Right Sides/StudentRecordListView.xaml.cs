@@ -28,12 +28,8 @@ namespace CoreApplication.User_Interfaces.Right_Sides
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {            
-            foreach (ClassTakenInformation pair in ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.TakenClasses)
-                studentRecordListView.Items.Add(pair);
-
-            foreach (ClassTakenInformation pair in ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.CurrentClasses)
-                studentRegisteredClassesListView.Items.Add(pair);
+        {
+            studentClassesTreeView.ItemsSource = ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.AllClasses;
         }
     }
 }
