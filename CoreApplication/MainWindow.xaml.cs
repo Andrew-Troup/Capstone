@@ -46,12 +46,12 @@
             rightSideFrame.Children.Clear();
             if (!MainHandlers.WindowManager.IsAdmin)
             {                               
-                StudentRecordListView listView = new StudentRecordListView();
+                StudentRecordTreeView listView = new StudentRecordTreeView();
                 rightSideFrame.Children.Add(listView);
             }
             else
             {
-                AdminStudentListView listView = new AdminStudentListView();
+                AdminStudentTreeView listView = new AdminStudentTreeView();
                 rightSideFrame.Children.Add(listView);
             }
             
@@ -64,7 +64,7 @@
             leftSideFrame.Children.Add(record);
 
             rightSideFrame.Children.Clear();
-            CourseRecordListView listView = new CourseRecordListView();
+            CourseRecordTreeView listView = new CourseRecordTreeView();
             rightSideFrame.Children.Add(listView);
         }
     }

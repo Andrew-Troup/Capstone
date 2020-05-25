@@ -21,9 +21,9 @@
     /// <summary>
     /// Interaction logic for AdminStudentListView.xaml
     /// </summary>
-    public partial class AdminStudentListView : UserControl
+    public partial class AdminStudentTreeView : UserControl
     {
-        public AdminStudentListView()
+        public AdminStudentTreeView()
         {
             InitializeComponent();
             Loaded += Page_Loaded;

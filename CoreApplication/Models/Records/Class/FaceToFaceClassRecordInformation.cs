@@ -1,6 +1,7 @@
 ﻿namespace CoreApplication.Models.Records.Class
 {
     using CoreApplication.Models.Base;
+    using CoreApplication.Models.Records.Class.Base;
     using MongoDB.Bson;
     using System;
     using System.Collections.Generic;

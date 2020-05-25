@@ -387,42 +387,7 @@
             </Grid>
 
             <Expander x:Name="completeClassExpander" Style="{DynamicResource ExpanderStyleWithoutButton}" Grid.Row="8" IsExpanded="True">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Grid.Row="0" Content="Completed Classes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Border Grid.Row="1" BorderThickness="2" Height="200" Width="Auto">
-                        <ListView x:Name="completedClasesListView">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Class}"/>
-                                    <GridViewColumn Header="Department" DisplayMemberBinding="{Binding Department}"/>
-                                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding ClassNumber}"/>
-                                    <GridViewColumn Header="Grade" DisplayMemberBinding="{Binding Grade}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Border>
-
-                    <Label Grid.Row="2" Content="Current Classes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Border Grid.Row="3" BorderThickness="2" Height="200" Width="Auto">
-                        <ListView x:Name="currentClassesListView">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Class}"/>
-                                    <GridViewColumn Header="Department" DisplayMemberBinding="{Binding Department}"/>
-                                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding ClassNumber}"/>
-                                    <GridViewColumn Header="Grade" DisplayMemberBinding="{Binding Grade}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Border>
-                </Grid>
+                <DockPanel x:Name="studentClassesDockPanel"/>
             </Expander>
 
             <DataGridColumnHeader Grid.Row="10"  Background="LightGray"/>

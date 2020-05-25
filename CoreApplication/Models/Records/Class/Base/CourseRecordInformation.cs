@@ -1,4 +1,4 @@
-﻿namespace CoreApplication.Models.Records.Class
+﻿namespace CoreApplication.Models.Records.Class.Base
 {
     using CoreApplication.Models.Base;
     using MongoDB.Bson;

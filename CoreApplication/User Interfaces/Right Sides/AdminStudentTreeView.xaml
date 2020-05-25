@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CoreApplication.User_Interfaces.Right_Sides.AdminStudentListView"
+﻿<UserControl x:Class="CoreApplication.User_Interfaces.Right_Sides.AdminStudentTreeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

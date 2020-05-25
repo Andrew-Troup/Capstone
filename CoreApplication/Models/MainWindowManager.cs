@@ -47,7 +47,7 @@
         {
             // TODO this is trash
             CurrentUser = new UserLoginInformation("Andrew-Troup", "andrew");
-            CurrentUser.UserType = UserTypes.Student;
+            CurrentUser.UserType = UserTypes.Admin;
             ViewStorage = new Dictionary<ActiveControls, object>();
 
 

@@ -4,6 +4,7 @@
     using CoreApplication.ModelHandlers.Records;
     using CoreApplication.Models;
     using CoreApplication.Models.Records.Student;
+    using CoreApplication.User_Interfaces.Right_Sides;
     using MongoDB.Bson;
     using MongoDB.Driver;
     using System;
@@ -53,8 +54,8 @@
             StudentRecordHandler handler = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent;
             studentInformationGrid.DataContext = handler.PersonalInformation;
             academicInformationGrid.DataContext = handler.AcademicInformation;
-            completedClasesListView.ItemsSource = handler.AcademicInformation.AllClasses[0].Classes;
-            currentClassesListView.ItemsSource = handler.AcademicInformation.AllClasses[1].Classes;
+            studentClassesDockPanel.Children.Clear();
+            studentClassesDockPanel.Children.Add(new StudentRecordTreeView());
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)

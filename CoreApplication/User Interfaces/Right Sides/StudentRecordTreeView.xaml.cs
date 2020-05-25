@@ -19,9 +19,9 @@ namespace CoreApplication.User_Interfaces.Right_Sides
     /// <summary>
     /// Interaction logic for StudentRecordListView.xaml
     /// </summary>
-    public partial class StudentRecordListView : UserControl
+    public partial class StudentRecordTreeView : UserControl
     {
-        public StudentRecordListView()
+        public StudentRecordTreeView()
         {
             InitializeComponent();
             Loaded += Page_Loaded;
@@ -29,7 +29,13 @@ namespace CoreApplication.User_Interfaces.Right_Sides
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            studentClassesTreeView.ItemsSource = ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.AllClasses;
+            if(!MainHandlers.WindowManager.IsAdmin)
+                studentClassesTreeView.ItemsSource = ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation.AllClasses;
+            else
+            {
+                if(((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent != null)
+                    studentClassesTreeView.ItemsSource = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent.AcademicInformation.AllClasses;
+            }                
         }
     }
 }
