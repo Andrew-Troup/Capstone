@@ -30,11 +30,16 @@
         public MainWindow()
         {
             InitializeComponent();
-            Show();
-            //LoginWindow window = new LoginWindow();
-            //window.ShowDialog();
-
+            Show();            
+            LoginWindow window = new LoginWindow();
+            window.FormCompleted += LoginWindow_FormCompleted;
+            window.ShowDialog();
             studentRecordRadioButton.IsChecked = true;
+        }
+
+        private void LoginWindow_FormCompleted(object sender, CustomEventArgs e)
+        {
+            MainHandlers.WindowManager.
         }
 
         private void studentRecordRadioButton_Checked(object sender, RoutedEventArgs e)

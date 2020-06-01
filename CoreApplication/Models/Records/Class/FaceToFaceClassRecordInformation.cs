@@ -47,11 +47,10 @@
 
         #endregion
 
-
-        public FaceToFaceClassRecordInformation(BsonDocument document) : base(document[2].AsString, document[3].AsString, document[4].AsBsonDocument)
+        public FaceToFaceClassRecordInformation(BsonDocument document) : base(document[3].AsString, document[4].AsString, document[5].AsBsonDocument)
         {
-            _classBuilding = document[0].AsString;
-            _classRoom = document[1].AsString;
+            _classBuilding = document[1].AsString;
+            _classRoom = document[2].AsString;
         }
 
         public FaceToFaceClassRecordInformation() : base()

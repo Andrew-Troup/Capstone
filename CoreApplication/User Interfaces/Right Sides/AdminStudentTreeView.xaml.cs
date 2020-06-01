@@ -27,6 +27,8 @@
         {
             InitializeComponent();
             Loaded += Page_Loaded;
+            if (((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent != null)
+                SelectItem();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -44,6 +46,11 @@
             {
                 // We clicked on a main tree item rather than a student item.
             }
+        }
+
+        private void SelectItem()
+        {
+            
         }
     }
 }

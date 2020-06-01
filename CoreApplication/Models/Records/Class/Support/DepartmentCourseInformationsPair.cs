@@ -35,12 +35,12 @@
 
         public DepartmentCourseInformationsPair(BsonDocument doc)
         {
-            DepartmentName = doc[0].AsString;
-            DepartmentAcronym = doc[1].AsString;
+            DepartmentName = doc[1].AsString;
+            DepartmentAcronym = doc[2].AsString;
             ClassRecords = new ObservableCollection<CourseRecordInformation>();
         }
 
-        public void LoadClasses(BsonArray documents)
+        public void LoadClasses(List<BsonDocument> documents)
         {
             foreach (BsonDocument document in documents)
                 LoadClass(document);
@@ -49,7 +49,7 @@
         public void LoadClass(BsonDocument document)
         {
             BsonValue classURl;
-            if (document.TryGetValue("ClassURL", out classURl))
+            if (document.TryGetValue("ClassUrl", out classURl))
                 ClassRecords.Add(new OnlineClassRecordInformation(document));
             else
                 ClassRecords.Add(new FaceToFaceClassRecordInformation(document));

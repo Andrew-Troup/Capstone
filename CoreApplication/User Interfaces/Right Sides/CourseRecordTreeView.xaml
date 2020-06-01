@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoreApplication.User_Interfaces.Right_Sides"
-             xmlns:handler="clr-namespace:CoreApplication.ModelHandlers.Records"
+             xmlns:base="clr-namespace:CoreApplication.Models.Records.Class.Base"
              xmlns:support="clr-namespace:CoreApplication.Models.Records.Class.Support"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -12,64 +12,71 @@
         <Border BorderThickness="5">
             <TreeView x:Name="classTreeView" SelectedItemChanged="classTreeView_SelectedItemChanged" Background="AliceBlue">
                 <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type handler:ClassRecordHandler}" ItemsSource="{Binding Classes}">
+                    <HierarchicalDataTemplate DataType="{x:Type support:DepartmentCourseInformationsPair}" ItemsSource="{Binding ClassRecords}">
                         <StackPanel Orientation="Horizontal">
                             <Border BorderBrush="Black" BorderThickness="1">
                                 <StackPanel Orientation="Horizontal">
                                     <Border BorderThickness="5">
-                                        <TextBlock Text="Class Name:"/>
+                                        <TextBlock Text="Department:"/>
                                     </Border>
 
                                     <Border BorderThickness="5">
-                                        <TextBlock Text="{Binding ClassName}"/>
+                                        <TextBlock Text="{Binding DepartmentName}"/>
                                     </Border>
 
                                     <Border BorderThickness="5">
-                                        <TextBlock Text="Class ID:"/>
+                                        <TextBlock Text="Short Name:"/>
                                     </Border>
 
                                     <Border BorderThickness="5">
-                                        <TextBlock Text="{Binding ClassID}"/>
+                                        <TextBlock Text="{Binding DepartmentAcronym}"/>
                                     </Border>
 
                                     <Border BorderThickness="5">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text=" [" Foreground="Blue" />
-                                            <TextBlock Text="{Binding StudentRecords.Count}" Foreground="Blue" />
+                                            <TextBlock Text="{Binding ClassRecords.Count}" Foreground="Blue" />
                                             <TextBlock Text="]" Foreground="Blue" />
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>
                             </Border>
-
                         </StackPanel>
                     </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type support:DepartmentCourseInformationsPair}">
+                    <DataTemplate DataType="{x:Type base:CourseRecordInformation}">
                         <StackPanel Orientation="Horizontal">
                             <Border BorderBrush="Black" BorderThickness="1">
                                 <StackPanel Orientation="Horizontal">
                                     <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="First Name: "/>
+                                        <TextBlock Text="Class Name:"/>
                                     </Border>
 
                                     <Border BorderThickness="2">
-                                        <TextBlock Text="{Binding PersonalInformation.FirstName}" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding CourseName}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="2" Width="Auto">
+                                        <TextBlock Text="Course ID:"/>
                                     </Border>
 
                                     <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Last Name: "/>
+                                        <TextBlock Text="{Binding CourseID }" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderThickness="2" Width="Auto">
+                                        <TextBlock Text="Credit Hours:"/>
                                     </Border>
 
                                     <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding PersonalInformation.LastName }" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Student ID: "/>
-                                    </Border>
-
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding PersonalInformation.ID}" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding CreditHours}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </StackPanel>
                             </Border>

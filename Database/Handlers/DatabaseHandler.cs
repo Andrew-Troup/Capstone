@@ -24,6 +24,71 @@ namespace Database.Handlers
         #region Methods
 
         /// <summary>
+        /// Logins the user.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public BsonDocument GetAccountFromLogin(string userName, string password)
+        {
+            BsonDocument account = null;
+            BsonDocument output;
+            try
+            {
+                BsonDocument doc = new BsonDocument{
+                    { "UserName", userName },
+                    { "Password", password },
+                };
+
+                output = Database.GetCollection(Collections.Users).Find(doc).FirstOrDefault<BsonDocument>();
+            }
+            catch (Exception)
+            {
+                throw new Exception($"Failed to find User Name: {userName} with password: {password}");
+            }
+
+            BsonValue value = null;
+            output.GetValue("ID", value);
+            FilterDefinition<BsonDocument> filter;
+            if (Convert.ToInt32(value) >= 100000)
+            {
+                filter = Builders<BsonDocument>.Filter.Eq("StudentID", value.AsString);
+                account = Database.GetCollection(Collections.Students).Find(filter).FirstOrDefault();
+            }
+            else
+            {
+                filter = Builders<BsonDocument>.Filter.Eq("AdminID", value.AsString);
+                account = Database.GetCollection(Collections.Admins).Find(filter).FirstOrDefault();
+            }
+
+            if (account == null)
+                throw new Exception("Could not find a student or admin with the ID assocaited to the login values");
+
+            return account;
+        }
+
+        /// <summary>
+        /// Gets the admin from a filter
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public BsonDocument GetAdmin(FilterDefinition<BsonDocument> filter)
+        {
+            return Database.GetCollection(Collections.Admins).Find(filter).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the admin from the ID
+        /// </summary>
+        /// <param name="adminID"></param>
+        /// <returns></returns>
+        public BsonDocument GetAdmin(string adminID)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("AdminID", adminID);
+            return Database.GetCollection(Collections.Admins).Find(filter).FirstOrDefault();
+        }
+
+        /// <summary>
         /// Gets a student from a filter
         /// </summary>
         /// <param name="filter"></param>
@@ -42,27 +107,6 @@ namespace Database.Handlers
         {
             var filter = Builders<BsonDocument>.Filter.Eq("StudentID", studentID);
             return Database.GetCollection(Collections.Students).Find(filter).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Gets the admin from a filter
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
-        public BsonDocument GetAdmin(FilterDefinition<BsonDocument> filter)
-        {            
-            return Database.GetCollection(Collections.Admins).Find(filter).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Gets the admin from the ID
-        /// </summary>
-        /// <param name="adminID"></param>
-        /// <returns></returns>
-        public BsonDocument GetAdmin(string adminID)
-        {
-            var filter = Builders<BsonDocument>.Filter.Eq("AdminID", adminID);
-            return Database.GetCollection(Collections.Admins).Find(filter).FirstOrDefault();
         }
 
         /// <summary>

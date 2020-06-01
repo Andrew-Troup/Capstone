@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="User Interfaces\Left Sides\Support\ExpanderWithoutButton.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="User Interfaces\Left Sides\Support\ExpanderWithoutButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.10.4" />
     <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.10.4" />

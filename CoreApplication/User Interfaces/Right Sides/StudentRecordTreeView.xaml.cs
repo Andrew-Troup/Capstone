@@ -21,6 +21,8 @@ namespace CoreApplication.User_Interfaces.Right_Sides
     /// </summary>
     public partial class StudentRecordTreeView : UserControl
     {
+        public event EventHandler AllowEdit;
+
         public StudentRecordTreeView()
         {
             InitializeComponent();
@@ -37,5 +39,7 @@ namespace CoreApplication.User_Interfaces.Right_Sides
                     studentClassesTreeView.ItemsSource = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent.AcademicInformation.AllClasses;
             }                
         }
+
+
     }
 }

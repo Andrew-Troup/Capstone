@@ -16,15 +16,29 @@
 
         private string _creditHours;
 
+        private string _department;
+
         private string _description;
 
         private string _startDate;
 
         private string _endDate;
 
+        private string _classNumber;
+
         #endregion
 
-        #region Properties
+        #region Properties        
+          
+        public string ClassNumber
+        {
+            get => _classNumber;
+            set
+            {
+                _classNumber = value;
+                RaiseUpdateDatabase($"ClassNumber:{_classNumber}");
+            }
+        }
 
         /// <summary>
         /// Course Id for the associated class.
@@ -35,7 +49,6 @@
             set 
             {
                 _courseID = value;
-                RaiseUpdateDatabase(_courseID);
             }
         }
 
@@ -48,7 +61,7 @@
             set
             {
                 _courseName = value;
-                RaiseUpdateDatabase(_courseName);
+                RaiseUpdateDatabase($"Name:{_courseName}");
             }
         }
 
@@ -61,7 +74,20 @@
             set
             {
                 _creditHours = value;
-                RaiseUpdateDatabase(_creditHours);
+                RaiseUpdateDatabase($"CreditHours:{_creditHours}");
+            }
+        }
+
+        /// <summary>
+        /// Department of the class
+        /// </summary>
+        public string Department
+        {
+            get => _department;
+            set
+            {
+                _department = value;
+                RaiseUpdateDatabase($"Department:{_department}");
             }
         }
 
@@ -74,7 +100,7 @@
             set
             {
                 _description = value;
-                RaiseUpdateDatabase(_description);
+                RaiseUpdateDatabase($"Description:{_description}");
             }
         }
 
@@ -114,6 +140,8 @@
             _courseID = document[1].AsString;
             _creditHours = document[2].AsString;
             _description = document[3].AsString;
+            _department = document[4].AsString;
+            _classNumber = document[5].AsString;
         }
 
         public CourseRecordInformation()

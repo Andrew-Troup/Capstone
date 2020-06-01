@@ -19,8 +19,10 @@ namespace Common.Models
     public enum Collections
     {
         Admins,
-        Students,
+        Departments,
         Classes,
-        Users
+        Majors,
+        Students,
+        Users        
     }
 }

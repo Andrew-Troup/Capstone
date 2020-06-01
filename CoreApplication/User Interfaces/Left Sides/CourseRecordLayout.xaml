@@ -3,22 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CoreApplication.User_Interfaces"
+             xmlns:local="clr-namespace:CoreApplication.User_Interfaces.Left_Sides"
+             xmlns:information="clr-namespace:CoreApplication.Models.Records"
              mc:Ignorable="d" 
              Background="AliceBlue"
              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-    <Grid>
+    <Grid x:Name="classInformationGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <Border Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Class Information"/>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        </Grid>
+        
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Begin Date" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Border Grid.Row="0" Grid.Column="1" BorderThickness="2">
+                    <TextBox Background="White" 
+                                Text="{Binding StartDate, Mode=TwoWay}" 
+                                TabIndex="1"
+                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                />
+                </Border>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="End Date" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Border Grid.Row="1" Grid.Column="1" BorderThickness="2">
+                    <TextBox Background="White" 
+                                Text="{Binding EndDate, Mode=TwoWay}" 
+                                TabIndex="2"
+                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                />
+                </Border>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Course Information"/>
         </Border>
 
-        <Grid Grid.Row="1" x:Name="courseInformationGrid">
+        <Grid Grid.Row="4" x:Name="courseInformationGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -36,58 +83,62 @@
                 <TextBox x:Name="courseNameTextBox" 
                                 Background="White" 
                                 Text="{Binding CourseName, Mode=TwoWay}" 
-                                TabIndex="1"
-                                IsEnabled="{Binding ElementName=editCourseToggleButton, Path=IsChecked}"/>
+                                TabIndex="3"
+                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                />
             </Border>
 
             <Label Grid.Row="1" Grid.Column="0" Content="Course ID" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Border Grid.Row="1" Grid.Column="1" BorderThickness="2">
-            <TextBox x:Name="courseIDTextBox" 
+                <TextBox x:Name="courseIDTextBox" 
                              Background="White" 
                              Text="{Binding CourseID, Mode=TwoWay}" 
-                             TabIndex="2"
-                             IsEnabled="{Binding ElementName=editCourseToggleButton, Path=IsChecked}"/>
+                             TabIndex="4"
+                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                             />
             </Border>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Credit Hours" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Border Grid.Row="2" Grid.Column="1" BorderThickness="2">
                 <TextBox x:Name="courseHoursTextBox" 
                                 Background="White" 
-                                Text="{Binding CourseHours, Mode=TwoWay}" 
-                                TabIndex="3"
-                                IsEnabled="{Binding ElementName=editCourseToggleButton, Path=IsChecked}"/>
+                                Text="{Binding CreditHours, Mode=TwoWay}" 
+                                TabIndex="5"
+                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                />
             </Border>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Associated Class(es)" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Description" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <Border Grid.Row="3" Grid.Column="1" BorderThickness="2">
-                <ListView x:Name="studentIdTextBox" 
-                                Background="White" 
-                                VerticalAlignment="Stretch"
-                                HorizontalAlignment="Stretch">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Class" DisplayMemberBinding="{Binding Class}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Border>
-
-            <Label Grid.Row="4" Grid.Column="0" Content="Description" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <Border Grid.Row="4" Grid.Column="1" BorderThickness="2">
-                <TextBox x:Name="descriptionTextBox" 
-                                Background="White" 
-                                Text="{Binding Desciption, Mode=TwoWay}" 
-                                IsEnabled="{Binding ElementName=editCourseToggleButton, Path=IsChecked}"
-                                TabIndex="4" 
-                         />
+                <TextBlock Text="{Binding Description}" 
+                           TextWrapping="WrapWithOverflow"
+                           Background="White"
+                           IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
+                           />
             </Border>
         </Grid>
 
-        <Border Grid.Row="2" BorderThickness="5" HorizontalAlignment="center" VerticalAlignment="Center">
-            <ToggleButton Content="Edit Course" 
-                        x:Name="editCourseToggleButton"                          
-                        TabIndex="0" 
-                        />
+        <Border Grid.Row="5" BorderThickness="2" Width="30">
+            <ToggleButton x:Name="editInformationToggleButton" TabIndex="6">Edit</ToggleButton>
         </Border>
+
+        <Border Grid.Row="6" BorderThickness="5">
+            <Button x:Name="registerStudentButton" TabIndex="7" Click="registerStudentButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="2">
+                        <TextBlock>Register:</TextBlock>
+                    </Border>
+                    
+                    <Border BorderThickness="2">
+                        <TextBlock Text="{Binding FirstName}"/>
+                    </Border>
+
+                    <Border BorderThickness="2">
+                        <TextBlock Text="{Binding LastName}"/>
+                    </Border>
+                </StackPanel>
+            </Button>                    
+        </Border>
+        
     </Grid>
 </UserControl>

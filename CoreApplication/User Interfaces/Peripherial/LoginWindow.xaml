@@ -8,7 +8,7 @@
         Title="LoginWindow" Height="300" Width="200">
     <DockPanel>
         <Border DockPanel.Dock="Bottom" BorderThickness="2">
-            <Button x:Name="loginButton" Content="Login"  Width="80"/>
+            <Button x:Name="loginButton" Content="Login"  Width="80" Click="loginButton_Click"/>
         </Border>
         
         <Grid>

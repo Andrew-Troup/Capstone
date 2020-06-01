@@ -15,6 +15,11 @@
             <Border BorderThickness="5">
                 <TreeView x:Name="adminTreeView" SelectedItemChanged="adminTreeView_SelectedItemChanged" Background="AliceBlue">
                     <TreeView.Resources>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="IsSelected"
+                                    Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                        </Style>
+                        
                         <HierarchicalDataTemplate DataType="{x:Type classInformation:ClassesBeingTaught}" ItemsSource="{Binding StudentRecords}">
                             <StackPanel Orientation="Horizontal">
                                 <Border BorderBrush="Black" BorderThickness="1">
@@ -56,23 +61,31 @@
                                         </Border>
 
                                         <Border BorderThickness="2">
-                                            <TextBlock Text="{Binding PersonalInformation.FirstName}" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding PersonalInformation.FirstName}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-
+                                    </StackPanel>
+                                </Border>
+                                
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <StackPanel Orientation="Horizontal">
                                         <Border BorderThickness="2" Width="Auto">
                                             <TextBlock Text="Last Name: "/>
                                         </Border>
 
                                         <Border BorderThickness="2" Width="Auto">
-                                            <TextBlock Text="{Binding PersonalInformation.LastName }" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding PersonalInformation.LastName }" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-
+                                    </StackPanel>
+                                </Border>
+                                
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <StackPanel Orientation="Horizontal">
                                         <Border BorderThickness="2" Width="Auto">
                                             <TextBlock Text="Student ID: "/>
                                         </Border>
 
                                         <Border BorderThickness="2" Width="Auto">
-                                            <TextBlock Text="{Binding PersonalInformation.ID}" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding PersonalInformation.ID}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </StackPanel>
                                 </Border>

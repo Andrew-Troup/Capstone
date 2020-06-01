@@ -12,9 +12,6 @@
     {
         #region Constants
 
-        // TODO: this is useless, but I may be able to connect with a user name.
-        private const string _databaseKey = "49ffabac-7230-43e4-8e7a-223786422914";
-
         private const string _databaseName = "Records";
 
         private const string _loginDatabaseName = "Login";
@@ -50,7 +47,6 @@
             try
             {
                 Client = new MongoClient($"mongodb+srv://{user.ToString()}@student-classcourserecords-ejxro.azure.mongodb.net/test?retryWrites=true&w=majority");
-                RecordsDatabase = Client.GetDatabase(_databaseKey);
             }
             catch(Exception)
             {

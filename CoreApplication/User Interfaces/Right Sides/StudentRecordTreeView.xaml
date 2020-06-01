@@ -77,7 +77,7 @@
                                     </Border>
 
                                     <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding Grade}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Grade}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="{Binding MainHandler.WindowManager.IsAdmin}"/>
                                     </Border>
                                 </StackPanel>
                             </Border>

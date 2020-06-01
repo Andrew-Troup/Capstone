@@ -47,15 +47,16 @@
                 studentInformationGrid.DataContext = MainHandlers.WindowManager.ViewHandler.PersonalInformation;
                 academicInformationGrid.DataContext = ((StudentRecordHandler)MainHandlers.WindowManager.ViewHandler).AcademicInformation;
             }
+            else
+            {
+                if (((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent != null)               
+                    LoadLayout();                    
+            }
         }
 
         private void StudentRecordLayout_UpdateUI(object sender, EventArgs e)
         {
-            StudentRecordHandler handler = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent;
-            studentInformationGrid.DataContext = handler.PersonalInformation;
-            academicInformationGrid.DataContext = handler.AcademicInformation;
-            studentClassesDockPanel.Children.Clear();
-            studentClassesDockPanel.Children.Add(new StudentRecordTreeView());
+            LoadLayout();
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -65,6 +66,21 @@
                 MainHandlers.DatabaseHandler.UpdateDatabase(MainHandlers.WindowManager.ViewHandler.UpdateInformation, studentIdTextBox.Text);
                 MainHandlers.WindowManager.ViewHandler.UpdateInformation.Clear();
             }
+        }
+
+        private void InitialMajorsDropBox()
+        {                        
+            majorComboBox.ItemsSource = MainHandlers.WindowManager.ViewHandler.GetMajors();
+        }
+
+        private void LoadLayout()
+        {
+            StudentRecordHandler handler = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent;
+            studentInformationGrid.DataContext = handler.PersonalInformation;
+            academicInformationGrid.DataContext = handler.AcademicInformation;
+            studentClassesDockPanel.Children.Clear();
+            studentClassesDockPanel.Children.Add(new StudentRecordTreeView());
+            InitialMajorsDropBox();
         }
     }
 }

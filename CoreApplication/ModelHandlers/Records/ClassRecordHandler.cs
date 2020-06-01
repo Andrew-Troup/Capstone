@@ -12,6 +12,10 @@
 
     class ClassRecordHandler
     {
+        public event EventHandler UpdateUI;
+
+        private CourseRecordInformation _selctedClass;
+
         #region Properties
 
         /// <summary>
@@ -19,10 +23,24 @@
         /// </summary>
         public ObservableCollection<DepartmentCourseInformationsPair> Classes { get; private set; }
 
+        /// <summary>
+        /// Holds the currently selected class.
+        /// </summary>
+        public CourseRecordInformation SelectedClass 
+        {
+            get => _selctedClass; 
+            set 
+            { 
+                _selctedClass = value; 
+                UpdateUI.Invoke(this, null); 
+            } 
+        }
+
         #endregion
 
-        public ClassRecordHandler(BsonArray departments)
+        public ClassRecordHandler(List<BsonDocument> departments)
         {
+            Classes = new ObservableCollection<DepartmentCourseInformationsPair>();
             foreach (BsonDocument department in departments)
                 Classes.Add(new DepartmentCourseInformationsPair(department));
         }

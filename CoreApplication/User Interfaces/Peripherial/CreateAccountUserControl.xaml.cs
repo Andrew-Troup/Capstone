@@ -1,6 +1,7 @@
 ﻿namespace CoreApplication.User_Interfaces.Peripherial
 {
     using CoreApplication.ModelHandlers;
+    using CoreApplication.Models.Records.Student;
     using MongoDB.Bson;
     using MongoDB.Driver;
     using System;
@@ -30,44 +31,36 @@
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            /*BsonDocument doc = MainHandlers.Database.GetCollection(Collections.Students).Find(
-                    Builders<BsonDocument>.Filter.Eq("Email", emailTextBox.Text)
-                    & Builders<BsonDocument>.Filter.Eq("StudentID", studentIDTextBox.Text)).FirstOrDefault();*/
+        {            
+            string userType = null;
+            if (!string.IsNullOrEmpty(UserNameTextBox.Text) && !string.IsNullOrEmpty(passwordTextBox.Text) && !string.IsNullOrEmpty(idTextBox.Text))
+            {
+                int i = Convert.ToInt32(idTextBox.Text);
+                if (i >= 100000)
+                    userType = "Student";
+                else
+                    userType = "Admin";
 
-            //if(doc != null)
-            //{
-                var writeConcern = WriteConcern.WMajority.With(wTimeout: TimeSpan.FromMilliseconds(5000));
-                BsonDocument temp = new BsonDocument { 
-                    { "createUser", "Andrew" }, 
-                    { "pwd", "Andrew" },
-                    {"customData", new BsonDocument("ID", "1234") },
-                    { "roles", new BsonArray{ 
-                        new BsonDocument 
-                        { 
-                            { "role", "readWrite" }, 
-                            { "db", "Students" } 
-                        },
-                        new BsonDocument
-                        {
-                            { "role", "read" },
-                            { "db", "Classes" }
-                        }
-                    } },
-                    {"writeConcern", writeConcern.ToBsonDocument() } 
+                BsonDocument temp = new BsonDocument {
+                    { "UserName", UserNameTextBox.Text },
+                    { "Password", passwordTextBox.Text },
+                    { "ID", idTextBox.Text },
+                    { "Type", userType }
                 };
 
-                MainHandlers.DatabaseHandler.Database.RecordsDatabase.RunCommand<BsonDocument>(temp);
+                MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Users).InsertOne(temp);
                 Background = Brushes.Green;
                 Thread.Sleep(300);
-                Background = Brushes.White;              
-            /*}
-            else
-            {
-                Background = Brushes.Red;
-                Thread.Sleep(300);
                 Background = Brushes.White;
-            }*/
+                CompletedForm?.Invoke(this, null);
+                /*}
+                else
+                {
+                    Background = Brushes.Red;
+                    Thread.Sleep(300);
+                    Background = Brushes.White;
+                }*/
+            }
         }
 
         protected void OnCompletedForm(EventArgs e)

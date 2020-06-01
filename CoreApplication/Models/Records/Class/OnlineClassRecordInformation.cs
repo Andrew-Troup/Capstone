@@ -30,9 +30,9 @@
 
         #endregion
 
-        public OnlineClassRecordInformation(BsonDocument document) : base(document[1].AsString, document[2].AsString, document[3].AsBsonDocument)
+        public OnlineClassRecordInformation(BsonDocument document) : base(document[2].AsString, document[3].AsString, document[4].AsBsonDocument)
         {
-            _classUrl = document[0].AsString;
+            _classUrl = document[1].AsString;
         }
     }
 }

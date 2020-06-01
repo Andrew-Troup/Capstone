@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CoreApplication.ModelHandlers;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,6 +20,9 @@ namespace CoreApplication.User_Interfaces.Peripherial
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public delegate void LoginHandled(object sender, CustomEventArgs e);
+        public event LoginHandled FormCompleted;
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -46,5 +52,32 @@ namespace CoreApplication.User_Interfaces.Peripherial
             userNameTextBox.IsEnabled = true;
             passwordTextBox.IsEnabled = true;
         }
+
+        private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BsonDocument doc = MainHandlers.DatabaseHandler.GetAccountFromLogin(userNameTextBox.Text, passwordTextBox.Text);
+                OnCompletedForm(doc);
+                this.Close();
+            }
+            catch(Exception)
+            {
+                loginButton.Background = Brushes.Red;
+                Thread.Sleep(300);
+                loginButton.Background = Brushes.White;
+            }
+        }
+
+        protected void OnCompletedForm(BsonDocument e)
+        {
+            FormCompleted?.Invoke(this, new CustomEventArgs(e))
+        }
+    }
+
+    public class CustomEventArgs
+    {
+        public BsonDocument Document { get; set; }
+        public CustomEventArgs(BsonDocument s) => Document = s;
     }
 }

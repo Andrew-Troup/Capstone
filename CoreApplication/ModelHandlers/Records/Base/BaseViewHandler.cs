@@ -1,10 +1,12 @@
-﻿using CoreApplication.Models.Records;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CoreApplication.ModelHandlers.Records.Base
+﻿namespace CoreApplication.ModelHandlers.Records.Base
 {
+    using CoreApplication.Models.Records;
+    using MongoDB.Bson;
+    using MongoDB.Driver;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     class BaseViewHandler
     {
         #region Properties
@@ -35,6 +37,16 @@ namespace CoreApplication.ModelHandlers.Records.Base
         public void Base_Value_Changed(object sender, Models.Base.ValueChangedArgs e)
         {
             UpdateInformation.Add(e.Text);
+        }
+
+        public List<string> GetMajors()
+        {
+            List<string> majors = new List<string>();
+            List<BsonDocument> documents = MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Majors).Find(new BsonDocument()).ToList();
+            foreach (BsonDocument document in documents)
+                majors.Add(document[1].AsString);
+
+            return majors;
         }
     }
 }

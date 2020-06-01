@@ -34,9 +34,9 @@
                 <TextBox x:Name="emailTextBox" TabIndex="2"/>
             </Border>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Student ID"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="ID"/>
             <Border Grid.Row="3" Grid.Column="1" BorderThickness="2">
-                <TextBox x:Name="studentIDTextBox" TabIndex="3"/>
+                <TextBox x:Name="idTextBox" TabIndex="3"/>
             </Border>
         </Grid>
         
