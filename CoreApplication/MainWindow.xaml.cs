@@ -25,21 +25,24 @@
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    { 
-
+    {
+        LoginWindow _window;
         public MainWindow()
         {
             InitializeComponent();
-            Show();            
-            LoginWindow window = new LoginWindow();
-            window.FormCompleted += LoginWindow_FormCompleted;
-            window.ShowDialog();
-            studentRecordRadioButton.IsChecked = true;
+            Show();
+            ShowLoginForm();
+            
         }
 
         private void LoginWindow_FormCompleted(object sender, CustomEventArgs e)
         {
-            MainHandlers.WindowManager.
+            MainHandlers.WindowManager = new MainWindowManager(e.Document);
+            _window.Close();
+            if((bool) !studentRecordRadioButton.IsChecked)
+                studentRecordRadioButton.IsChecked = true;
+            else
+                studentRecordRadioButton_Checked(null, null);
         }
 
         private void studentRecordRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -71,6 +74,20 @@
             rightSideFrame.Children.Clear();
             CourseRecordTreeView listView = new CourseRecordTreeView();
             rightSideFrame.Children.Add(listView);
+        }
+
+        private void logoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            leftSideFrame.Children.Clear();
+            rightSideFrame.Children.Clear();
+            ShowLoginForm();            
+        }
+
+        private void ShowLoginForm()
+        {
+            _window = new LoginWindow();
+            _window.FormCompleted += LoginWindow_FormCompleted;
+            _window.ShowDialog();
         }
     }
 }

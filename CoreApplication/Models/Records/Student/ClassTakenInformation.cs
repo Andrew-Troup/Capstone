@@ -1,5 +1,6 @@
 ﻿namespace CoreApplication.Models.Records.Student
 {
+    using CoreApplication.ModelHandlers;
     using CoreApplication.Models.Base;
     using System;
     using System.Collections.Generic;
@@ -52,12 +53,16 @@
             }
         }
         
-        public string Grade { 
+        public string Grade 
+        { 
             get => _grade;
             set
             {
-                _grade = value;
-                RaiseUpdateDatabase(string.Format("ClassName:{0}{1} - {2}\tGrade:{3}", _department, _classNumber, _class, _grade));
+                if (MainHandlers.WindowManager.IsAdmin)
+                {
+                    _grade = value;
+                    RaiseUpdateDatabase(string.Format("ClassName:{0}{1} - {2}\tGrade:{3}", _department, _classNumber, _class, _grade));
+                }
             }
         }
 

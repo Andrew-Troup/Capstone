@@ -39,7 +39,7 @@ namespace CoreApplication.User_Interfaces.Left_Sides
         {
             if (!MainHandlers.WindowManager.IsAdmin)
             {
-                classInformationGrid.IsEnabled = false;
+                editInformationToggleButton.Visibility = Visibility.Collapsed;
                 registerStudentButton.DataContext = MainHandlers.WindowManager.ViewHandler.PersonalInformation;
             }
             else

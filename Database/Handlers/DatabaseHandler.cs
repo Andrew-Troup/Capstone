@@ -31,7 +31,6 @@ namespace Database.Handlers
         /// <returns></returns>
         public BsonDocument GetAccountFromLogin(string userName, string password)
         {
-            BsonDocument account = null;
             BsonDocument output;
             try
             {
@@ -47,24 +46,7 @@ namespace Database.Handlers
                 throw new Exception($"Failed to find User Name: {userName} with password: {password}");
             }
 
-            BsonValue value = null;
-            output.GetValue("ID", value);
-            FilterDefinition<BsonDocument> filter;
-            if (Convert.ToInt32(value) >= 100000)
-            {
-                filter = Builders<BsonDocument>.Filter.Eq("StudentID", value.AsString);
-                account = Database.GetCollection(Collections.Students).Find(filter).FirstOrDefault();
-            }
-            else
-            {
-                filter = Builders<BsonDocument>.Filter.Eq("AdminID", value.AsString);
-                account = Database.GetCollection(Collections.Admins).Find(filter).FirstOrDefault();
-            }
-
-            if (account == null)
-                throw new Exception("Could not find a student or admin with the ID assocaited to the login values");
-
-            return account;
+            return output;
         }
 
         /// <summary>

@@ -4,87 +4,92 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:support="clr-namespace:CoreApplication.Models.Records.Student.Support"
+             xmlns:converter="clr-namespace:CoreApplication.Models.Support"
              xmlns:student="clr-namespace:CoreApplication.Models.Records.Student"
+             xmlns:temp="clr-CoreApplication.ModelHandlers"
              mc:Ignorable="d" 
-             VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-    <DockPanel Background="AliceBlue">
-        <Label DockPanel.Dock="Top" Content="Student's Classes" Height="Auto" HorizontalAlignment="Center"/>
-        <Border BorderThickness="5">
-            <TreeView x:Name="studentClassesTreeView" Background="AliceBlue" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type support:TypeClassesPair}" ItemsSource="{Binding Classes}">
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="5">
-                                        <TextBlock Text="{Binding Name}"/>
-                                    </Border>
+             VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto" Width="Auto">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-                                    <Border BorderThickness="5">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text=" [" Foreground="Blue" />
-                                            <TextBlock Text="{Binding Classes.Count}" Foreground="Blue" />
-                                            <TextBlock Text="]" Foreground="Blue" />
-                                        </StackPanel>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
+        <Label Grid.Row="0" Content="Student's Classes" Height="Auto" HorizontalAlignment="Center"/>
+        <TreeView Grid.Row="1" x:Name="studentClassesTreeView" Background="AliceBlue" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type support:TypeClassesPair}" ItemsSource="{Binding Classes}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderThickness="5">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </Border>
 
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <DataTemplate DataType="{x:Type student:ClassTakenInformation}">
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Class Name: "/>
-                                    </Border>
+                                <Border BorderThickness="5">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text=" [" Foreground="Blue" />
+                                        <TextBlock Text="{Binding Classes.Count}" Foreground="Blue" />
+                                        <TextBlock Text="]" Foreground="Blue" />
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
 
-                                    <Border BorderThickness="2">
-                                        <TextBlock Text="{Binding Class}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-                            
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Department: "/>
-                                    </Border>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type student:ClassTakenInformation}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBlock Text="Class Name: "/>
+                                </Border>
 
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding Department }" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-                            
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Class Number:"/>
-                                    </Border>
+                                <Border BorderThickness="2">
+                                    <TextBlock Text="{Binding Class}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
 
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding ClassNumber}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>   
-                            </Border>
-                        
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Grade:"/>
-                                    </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBlock Text="Department: "/>
+                                </Border>
 
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBox Text="{Binding Grade}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="{Binding MainHandler.WindowManager.IsAdmin}"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-                    </DataTemplate>
-                </TreeView.Resources>
-            </TreeView>
-        </Border>
-    </DockPanel>
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBlock Text="{Binding Department }" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBlock Text="Class Number:"/>
+                                </Border>
+
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBlock Text="{Binding ClassNumber}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBlock Text="Grade:"/>
+                                </Border>
+
+                                <Border BorderThickness="2" Width="Auto">
+                                    <TextBox Text="{Binding Grade}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+    </Grid>
 </UserControl>

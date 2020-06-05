@@ -21,8 +21,6 @@ namespace CoreApplication.User_Interfaces.Right_Sides
     /// </summary>
     public partial class StudentRecordTreeView : UserControl
     {
-        public event EventHandler AllowEdit;
-
         public StudentRecordTreeView()
         {
             InitializeComponent();

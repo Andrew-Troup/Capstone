@@ -56,5 +56,15 @@
                     break;
             }                       
         }
+
+        private void sortByComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void searchTextBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

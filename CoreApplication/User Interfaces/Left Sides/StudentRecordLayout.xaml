@@ -392,25 +392,20 @@
                 </Border>
             </Grid>
 
-            <Expander Template="{DynamicResource ExpanderWithoutButton}" x:Name="completeClassExpander" Grid.Row="8" IsExpanded="True">
-                <DockPanel x:Name="studentClassesDockPanel"/>
-            </Expander>
-
-            <DataGridColumnHeader Grid.Row="10"  Background="LightGray"/>
-            <Border Grid.Row="11" BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <ToggleButton x:Name="editAcademicInformationToggleButton" 
+            <Expander Template="{DynamicResource ExpanderWithoutButton}" x:Name="completeClassExpander" Grid.Row="8" IsExpanded="True" Width="Auto" Height="Auto">
+                <StackPanel>
+                    <DockPanel x:Name="studentClassesDockPanel"/>
+                    <Border BorderThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ToggleButton x:Name="editAcademicInformationToggleButton" 
                               Content="Edit" 
                               TabIndex="9" 
                               Click="ToggleButton_Checked"/>
-            </Border>
-            
-            <Border Grid.Row="12" BorderThickness="5" HorizontalAlignment="center" VerticalAlignment="Center">
-                <Button Content="Register Student" 
-                        x:Name="registerStudentTextBlock"                          
-                        TabIndex="10" 
-                        />
-            </Border>
+                    </Border>
+                </StackPanel>
+                
+            </Expander>
 
+            <DataGridColumnHeader Grid.Row="10"  Background="LightGray"/>
         </Grid>
     </DockPanel>
 </UserControl>

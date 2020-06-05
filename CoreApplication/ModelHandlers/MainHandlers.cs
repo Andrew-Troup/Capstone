@@ -16,7 +16,6 @@
         static MainHandlers()
         {
             DatabaseHandler = new DatabaseHandler();
-            WindowManager = new MainWindowManager();
         }
     }
 }

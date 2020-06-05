@@ -7,6 +7,11 @@ namespace Common.Models.Login
     public class UserLoginInformation
     {
         /// <summary>
+        /// Login user name
+        /// </summary>
+        public string UserName { get; private set; }
+
+        /// <summary>
         /// User's ID
         /// </summary>
         public string UserID { get; private set; }
@@ -26,10 +31,12 @@ namespace Common.Models.Login
         /// </summary>
         /// <param name="userID"></param>
         /// <param name="password"></param>
-        public UserLoginInformation(string userID, string password)
+        public UserLoginInformation(string userName, string password, string userID, string userType)
         {
+            UserName = userName;
             UserID = userID;
             Password = password;
+            UserType = (UserTypes)Enum.Parse(typeof(UserTypes), userType);
         }
 
         /// <summary>

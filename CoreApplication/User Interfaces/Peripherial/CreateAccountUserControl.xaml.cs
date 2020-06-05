@@ -33,7 +33,7 @@
         private void Button_Click(object sender, RoutedEventArgs e)
         {            
             string userType = null;
-            if (!string.IsNullOrEmpty(UserNameTextBox.Text) && !string.IsNullOrEmpty(passwordTextBox.Text) && !string.IsNullOrEmpty(idTextBox.Text))
+            if (!string.IsNullOrEmpty(UserNameTextBox.Text) && !string.IsNullOrEmpty(passwordTextBox.Text) && !string.IsNullOrEmpty(idTextBox.Text) && !string.IsNullOrEmpty(emailTextBox.Text))
             {
                 int i = Convert.ToInt32(idTextBox.Text);
                 if (i >= 100000)
@@ -44,22 +44,24 @@
                 BsonDocument temp = new BsonDocument {
                     { "UserName", UserNameTextBox.Text },
                     { "Password", passwordTextBox.Text },
-                    { "ID", idTextBox.Text },
-                    { "Type", userType }
+                    { "ID", idTextBox.Text },                    
+                    { "Type", userType },
+                    {"Email",  emailTextBox.Text}
                 };
-
-                MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Users).InsertOne(temp);
-                Background = Brushes.Green;
-                Thread.Sleep(300);
-                Background = Brushes.White;
-                CompletedForm?.Invoke(this, null);
-                /*}
-                else
+                
+                if(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Users).Find(new BsonDocument { { "UserName", UserNameTextBox.Text } }).FirstOrDefault() == null)
                 {
-                    Background = Brushes.Red;
+                    MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Users).InsertOne(temp);
+                    Background = Brushes.Green;
                     Thread.Sleep(300);
                     Background = Brushes.White;
-                }*/
+                    CompletedForm?.Invoke(this, null);
+                }
+                else
+                {
+                    string content = $"A username of: {UserNameTextBox.Text} already exists.";
+                    MessageBox.Show(content, "Ok");
+                }
             }
         }
 

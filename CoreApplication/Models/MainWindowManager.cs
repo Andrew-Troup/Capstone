@@ -1,4 +1,4 @@
-﻿namespace CoreApplication.Models
+﻿namespace CoreApplication.ModelHandlers
 {
     using Common.Models;
     using Common.Models.Login;
@@ -44,22 +44,15 @@
 
         #endregion
 
-        public MainWindowManager()
+        public MainWindowManager(BsonDocument user)
         {
-            // TODO this is trash
-            CurrentUser = new UserLoginInformation("Andrew-Troup", "andrew");
-            CurrentUser.UserType = UserTypes.Admin;
+            CurrentUser = new UserLoginInformation(user[1].AsString, user[2].AsString, user[3].AsString, user[4].AsString);
+            ClassRecords = new ClassRecordHandler(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Departments).Find(new BsonDocument()).ToEnumerable().ToList());
 
-            //ClassRecords = new ClassRecordHandler(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Departments).Find(new BsonDocument()).ToEnumerable().ToList());
-
-            /*if (!IsAdmin)
-            {
-                // CurrentUser.UserID
-                ViewHandler = new StudentRecordHandler(MainHandlers.DatabaseHandler.GetStudent("725571"));
-            }
+            if (!IsAdmin)
+                ViewHandler = new StudentRecordHandler(MainHandlers.DatabaseHandler.GetStudent(CurrentUser.UserID));
             else
-                // CurrentUser.UserID
-                ViewHandler = new AdminRecordHandler(MainHandlers.DatabaseHandler.GetAdmin("87170"));*/
+                ViewHandler = new AdminRecordHandler(MainHandlers.DatabaseHandler.GetAdmin(CurrentUser.UserID));
         }
     }
 }

@@ -46,7 +46,7 @@
                     <TextBox Background="White" 
                                 Text="{Binding StartDate, Mode=TwoWay}" 
                                 TabIndex="1"
-                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
                                 />
                 </Border>
 
@@ -55,7 +55,7 @@
                     <TextBox Background="White" 
                                 Text="{Binding EndDate, Mode=TwoWay}" 
                                 TabIndex="2"
-                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
                                 />
                 </Border>
             </Grid>
@@ -84,7 +84,7 @@
                                 Background="White" 
                                 Text="{Binding CourseName, Mode=TwoWay}" 
                                 TabIndex="3"
-                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
                                 />
             </Border>
 
@@ -94,7 +94,7 @@
                              Background="White" 
                              Text="{Binding CourseID, Mode=TwoWay}" 
                              TabIndex="4"
-                             IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
                              />
             </Border>
 
@@ -104,7 +104,7 @@
                                 Background="White" 
                                 Text="{Binding CreditHours, Mode=TwoWay}" 
                                 TabIndex="5"
-                                IsEnabled="{Binding ElementName=editPersonalInformationToggleButton, Path=IsChecked}"
+                                IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
                                 />
             </Border>
 

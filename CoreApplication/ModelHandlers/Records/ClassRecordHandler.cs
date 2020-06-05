@@ -7,6 +7,7 @@
     using MongoDB.Driver;
     using System;
     using System.Collections.Generic;
+    using System.Collections.Immutable;
     using System.Collections.ObjectModel;
     using System.Text;
 
@@ -58,6 +59,15 @@
             FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("CourseInformation.Department", acronym);
             DepartmentCourseInformationsPair current = FindFromAcronym(acronym);
             MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Classes).Find(filter).ForEachAsync(x=>current.LoadClass(x));
+        }
+
+        /// <summary>
+        /// Defines if the user wants to sort the list by ascending or descending order
+        /// </summary>
+        /// <param name="isAscending"></param>
+        public void SortByAscending(bool isAscending)
+        {
+            
         }
 
         #endregion

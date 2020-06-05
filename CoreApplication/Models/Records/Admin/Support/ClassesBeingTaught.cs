@@ -46,7 +46,16 @@
             ClassName = document[(int) Positions.ClassName].AsString;
             ClassID = document[(int) Positions.ClassID].AsString;
             foreach (BsonDocument doc in document[(int)Positions.StudentIDs].AsBsonArray)
-                StudentRecords.Add(new StudentRecordHandler(MainHandlers.DatabaseHandler.GetStudent(doc[0].AsString)));
+            {
+                try
+                {
+                    StudentRecords.Add(new StudentRecordHandler(MainHandlers.DatabaseHandler.GetStudent(doc[0].AsString)));
+                }
+                catch(Exception)
+                {
+
+                }
+            }
         }
     }
 }

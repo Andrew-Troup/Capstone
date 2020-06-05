@@ -7,6 +7,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
@@ -31,16 +32,32 @@
 
         private void searchForPasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            BsonDocument doc = MainHandlers.DatabaseHandler.Database.GetCollection(Collections.Users).Find(
-                  Builders<BsonDocument>.Filter.Eq("UserName", UserNameTextBox.Text)
-                & Builders<BsonDocument>.Filter.Eq("Email", emailTextBox.Text)
-                & Builders<BsonDocument>.Filter.Eq("StudentID", studentIDTextBox.Text)).FirstOrDefault();
+            if (!String.IsNullOrEmpty(UserNameTextBox.Text) && !String.IsNullOrEmpty(emailTextBox.Text) && !String.IsNullOrEmpty(studentIDTextBox.Text))
+            {
+                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.And(
+                        Builders<BsonDocument>.Filter.Eq("UserName", UserNameTextBox.Text),
+                        Builders<BsonDocument>.Filter.Eq("Email", emailTextBox.Text),
+                        Builders<BsonDocument>.Filter.Eq("ID", studentIDTextBox.Text)
+                        );
 
-            if (doc == null)
-                passTextBlock.Text = "No Password Found.";
-            else
-                passTextBlock.Text = doc[1].AsString;
+                BsonDocument doc = MainHandlers.DatabaseHandler.Database.GetCollection(Collections.Users).Find(filter).FirstOrDefault();
 
+                string text;
+                if (doc == null)
+                   text = "No Password Found.";
+                else
+                {
+                    text = $"Password Found: {doc[1].AsString}";
+                    OnCompletedForm(null);
+                }
+
+                MessageBox.Show(text, "Ok");
+            }
+        }
+
+        protected void OnCompletedForm(EventArgs e)
+        {
+            CompletedForm?.Invoke(this, null);
         }
     }
 }

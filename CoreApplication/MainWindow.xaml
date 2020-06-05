@@ -10,9 +10,9 @@
         <BindingGroup x:Name="test"/>
     </Window.BindingGroup>
     <DockPanel>
-        <ToolBarTray DockPanel.Dock="Top" Height="13" Background="WhiteSmoke">
+        <ToolBarTray DockPanel.Dock="Top" Height="auto" Background="WhiteSmoke">
             <ToolBar >
-                
+                <Button x:Name="logoutButton" Click="logoutButton_Click">Logout</Button>
             </ToolBar>
         </ToolBarTray>
                
