@@ -15,23 +15,34 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="1">
             <StackPanel Orientation="Horizontal" Background="AliceBlue">
-                <Border BorderThickness="5">
-                    <Label Content="Sort by"/>
-                </Border>
+                <Label Content="Sort by" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                 <Border BorderThickness="5">
-                    <ComboBox x:Name="sortByComboBox" SelectionChanged="sortByComboBox_SelectionChanged" Width="Auto">
-                        <ComboBoxItem IsSelected="True">Ascending</ComboBoxItem>
+                    <ComboBox x:Name="sortByComboBox" SelectionChanged="sortByComboBox_SelectionChanged" Width="Auto" HorizontalAlignment="Right">
+                        <ComboBoxItem>Ascending</ComboBoxItem>
                         <ComboBoxItem>Descending</ComboBoxItem>
                     </ComboBox>
                 </Border>
-
+                <Label Content="Search Database" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border BorderThickness="5">
-                    <Label Content="Search"/>
+                    <TextBox Width="200" x:Name="searchTextBox" HorizontalAlignment="Center"/>
                 </Border>
+                
 
-                <Border BorderThickness="5">
-                    <TextBox Width="100" x:Name="searchTextBox" DataContextChanged="searchTextBox_DataContextChanged"/>
+                <Border BorderThickness="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="2">
+                            <Button x:Name="searchDatabaseButton" Click="searchDatabaseButton_Click" Content="Search" Height="Auto" FontSize="8"/>
+                        </Border>
+
+                        <Border Grid.Row="1" BorderThickness="2">
+                            <Button  x:Name="clearSearchButton" Click="clearSearchButton_Click" Content="Clear" Height="Auto" FontSize="8"/>
+                        </Border>
+                    </Grid>
                 </Border>
             </StackPanel>
         </Border>

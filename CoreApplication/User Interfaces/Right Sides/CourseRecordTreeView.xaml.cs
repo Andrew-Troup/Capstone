@@ -29,6 +29,14 @@
         {
             InitializeComponent();
             Loaded += Page_Loaded;
+            sortByComboBox.SelectedIndex = 0;
+            clearSearchButton.IsEnabled = false;
+            MainHandlers.WindowManager.ClassRecords.UpdateUI += ClassRecords_UpdateUI;
+        }
+
+        private void ClassRecords_UpdateUI(object sender, EventArgs e)
+        {
+            classTreeView.ItemsSource = MainHandlers.WindowManager.ClassRecords.Classes;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -36,7 +44,7 @@
             if(MainHandlers.WindowManager.ClassRecords == null)
                 MainHandlers.WindowManager.ClassRecords = new ClassRecordHandler(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Departments).Find(new BsonDocument()).ToEnumerable().ToList());
 
-            classTreeView.ItemsSource = MainHandlers.WindowManager.ClassRecords.Classes;
+            ClassRecords_UpdateUI(null, null);
         }
 
         private void classTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -59,12 +67,26 @@
 
         private void sortByComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string text = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
+            if(!string.IsNullOrEmpty(text))
+                MainHandlers.WindowManager.ClassRecords.SortBy(text);        
         }
 
-        private void searchTextBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void searchDatabaseButton_Click(object sender, RoutedEventArgs e)
         {
+            string text = searchTextBox.Text;
+            if (!string.IsNullOrEmpty(text))
+            {
+                MainHandlers.WindowManager.ClassRecords.SearchDatabase(text);                
+                classTreeView.ItemsSource = MainHandlers.WindowManager.ClassRecords.SearchedClasses;
+                clearSearchButton.IsEnabled = true;
+            }
+        }
 
+        private void clearSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            clearSearchButton.IsEnabled = false;
+            ClassRecords_UpdateUI(null, null);
         }
     }
 }
