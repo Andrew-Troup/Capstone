@@ -29,14 +29,18 @@
         {
             InitializeComponent();
             Loaded += Page_Loaded;
+            MainHandlers.WindowManager.ClassRecords.UpdateCourseTreeViewUI += ClassRecords_UpdateCourseTreeViewUI;
             sortByComboBox.SelectedIndex = 0;
-            clearSearchButton.IsEnabled = false;
-            MainHandlers.WindowManager.ClassRecords.UpdateUI += ClassRecords_UpdateUI;
+            filterByComboBox.SelectedIndex = 0;
+            clearSearchButton.IsEnabled = false;            
         }
 
-        private void ClassRecords_UpdateUI(object sender, EventArgs e)
+        private void ClassRecords_UpdateCourseTreeViewUI(object sender, EventArgs e)
         {
-            classTreeView.ItemsSource = MainHandlers.WindowManager.ClassRecords.Classes;
+            if (MainHandlers.WindowManager.ClassRecords.SearchedClasses.Count == 0)
+                classTreeView.ItemsSource = MainHandlers.WindowManager.ClassRecords.Classes;
+            else
+                classTreeView.ItemsSource = MainHandlers.WindowManager.ClassRecords.SearchedClasses;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -44,7 +48,7 @@
             if(MainHandlers.WindowManager.ClassRecords == null)
                 MainHandlers.WindowManager.ClassRecords = new ClassRecordHandler(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Departments).Find(new BsonDocument()).ToEnumerable().ToList());
 
-            ClassRecords_UpdateUI(null, null);
+            ClassRecords_UpdateCourseTreeViewUI(null, null);
         }
 
         private void classTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -55,7 +59,7 @@
                     if (x.ClassRecords.Count == 0)
                     {
                         var filter = Builders<BsonDocument>.Filter.Eq("CourseInformation.Department", x.DepartmentAcronym);
-                        x.LoadClasses(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Classes).Find(filter).ToEnumerable().ToList());
+                        x.LoadClasses(MainHandlers.DatabaseHandler.Database.GetCollection(Common.Models.Collections.Classes).Find(filter).ToEnumerable().ToList(), MainHandlers.WindowManager.ClassRecords.CurrentSortByType);
                     }
                     break;
 
@@ -86,7 +90,19 @@
         private void clearSearchButton_Click(object sender, RoutedEventArgs e)
         {
             clearSearchButton.IsEnabled = false;
-            ClassRecords_UpdateUI(null, null);
+            MainHandlers.WindowManager.ClassRecords.SearchedClasses.Clear();
+            searchTextBox.Text = string.Empty;
+            ClassRecords_UpdateCourseTreeViewUI(null, null);
+        }
+
+        private void filterByComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string text = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
+            if (!string.IsNullOrEmpty(text))
+            {
+                MainHandlers.WindowManager.ClassRecords.FilterBy(text);
+                //ClassRecords_UpdateCourseTreeViewUI(null, null);
+            }
         }
     }
 }

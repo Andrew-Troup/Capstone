@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Windows;
 
     class CourseRecordInformation : UpdateDatabase
     {
@@ -105,19 +106,6 @@
         }
 
         /// <summary>
-        /// /The start date for the class
-        /// </summary>
-        public string StartDate
-        {
-            get => _startDate;
-            set
-            {
-                _startDate = value;
-                RaiseUpdateDatabase($"BeginDate:{_startDate}");
-            }
-        }
-
-        /// <summary>
         /// End date for the course
         /// </summary>
         public string EndDate
@@ -127,6 +115,19 @@
             {
                 _endDate = value;
                 RaiseUpdateDatabase($"EndDate:{_endDate}");
+            }
+        }       
+
+        /// <summary>
+        /// /The start date for the class
+        /// </summary>
+        public string StartDate
+        {
+            get => _startDate;
+            set
+            {
+                _startDate = value;
+                RaiseUpdateDatabase($"BeginDate:{_startDate}");
             }
         }
 

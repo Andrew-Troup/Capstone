@@ -9,9 +9,14 @@
 
     public static class MainHandlers
     {
+
+        #region Properties
+
         internal static DatabaseHandler DatabaseHandler { get; set; }
 
         internal static MainWindowManager WindowManager {get; set;}
+
+        #endregion
 
         static MainHandlers()
         {

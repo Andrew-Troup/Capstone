@@ -16,16 +16,25 @@
         <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="1">
             <StackPanel Orientation="Horizontal" Background="AliceBlue">
                 <Label Content="Sort by" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                <Border BorderThickness="5">
-                    <ComboBox x:Name="sortByComboBox" SelectionChanged="sortByComboBox_SelectionChanged" Width="Auto" HorizontalAlignment="Right">
+                <Border BorderThickness="5" VerticalAlignment="Center">
+                    <ComboBox x:Name="sortByComboBox" SelectionChanged="sortByComboBox_SelectionChanged" Width="Auto" HorizontalAlignment="Right" Height="25">
                         <ComboBoxItem>Ascending</ComboBoxItem>
                         <ComboBoxItem>Descending</ComboBoxItem>
                     </ComboBox>
                 </Border>
+
+                <Label Content="Class Filter" VerticalAlignment="Center"/>
+                <Border BorderThickness="5" VerticalAlignment="Center">
+                    <ComboBox x:Name="filterByComboBox" SelectionChanged="filterByComboBox_SelectionChanged" Width="Auto" HorizontalAlignment="Right" Height="25">
+                        <ComboBoxItem>All</ComboBoxItem>
+                        <ComboBoxItem>Online</ComboBoxItem>
+                        <ComboBoxItem>Face-To-Face</ComboBoxItem>
+                    </ComboBox>
+                </Border>
+                
                 <Label Content="Search Database" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border BorderThickness="5">
-                    <TextBox Width="200" x:Name="searchTextBox" HorizontalAlignment="Center"/>
+                    <TextBox Width="200" x:Name="searchTextBox" HorizontalAlignment="Center" Height="18"/>
                 </Border>
                 
 
@@ -36,20 +45,24 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Border BorderThickness="2">
-                            <Button x:Name="searchDatabaseButton" Click="searchDatabaseButton_Click" Content="Search" Height="Auto" FontSize="8"/>
+                            <Button x:Name="searchDatabaseButton" Click="searchDatabaseButton_Click" Content="Search" Height="Auto" FontSize="10"/>
                         </Border>
 
                         <Border Grid.Row="1" BorderThickness="2">
-                            <Button  x:Name="clearSearchButton" Click="clearSearchButton_Click" Content="Clear" Height="Auto" FontSize="8"/>
+                            <Button  x:Name="clearSearchButton" Click="clearSearchButton_Click" Content="Clear" Height="Auto" FontSize="10"/>
                         </Border>
                     </Grid>
                 </Border>
             </StackPanel>
         </Border>
 
-
         <TreeView Grid.Row="1" x:Name="classTreeView" SelectedItemChanged="classTreeView_SelectedItemChanged" Background="AliceBlue" ScrollViewer.CanContentScroll="True">
             <TreeView.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}"/>
+                
                 <HierarchicalDataTemplate DataType="{x:Type support:DepartmentCourseInformationsPair}" ItemsSource="{Binding ClassRecords}" >
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Black" BorderThickness="1">

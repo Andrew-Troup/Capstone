@@ -7,9 +7,16 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="300" Width="200">
     <DockPanel>
-        <Border DockPanel.Dock="Bottom" BorderThickness="2">
-            <Button x:Name="loginButton" Content="Login"  Width="80" Click="loginButton_Click"/>
-        </Border>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border BorderThickness="2">
+                <Button x:Name="loginButton" Content="Login"  Width="60" Click="loginButton_Click"/>
+            </Border>
+
+            <Border BorderThickness="2">
+                <Button x:Name="cancelButton" Content="Cancel"  Width="60" Click="cancelButton_Click"/>
+            </Border>
+        </StackPanel>
+       
         
         <Grid>
             <Grid.RowDefinitions>

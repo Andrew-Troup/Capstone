@@ -6,6 +6,7 @@
     using CoreApplication.User_Interfaces.Left_Sides;
     using CoreApplication.User_Interfaces.Peripherial;
     using CoreApplication.User_Interfaces.Right_Sides;
+    using MongoDB.Bson;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,6 +28,7 @@
     public partial class MainWindow : Window
     {
         LoginWindow _window;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,43 +39,43 @@
 
         private void LoginWindow_FormCompleted(object sender, CustomEventArgs e)
         {
-            MainHandlers.WindowManager = new MainWindowManager(e.Document);
-            _window.Close();
-            if((bool) !studentRecordRadioButton.IsChecked)
-                studentRecordRadioButton.IsChecked = true;
+            BsonValue output;
+            if (e.Document.TryGetValue("CloseApplication", out output))
+            {
+                if (Boolean.Parse(output.AsString))
+                {
+                    _window.Close();
+                    Close();
+                }
+            }
             else
-                studentRecordRadioButton_Checked(null, null);
+            {
+                MainHandlers.WindowManager = new MainWindowManager(e.Document);
+                _window.Close();
+                if ((bool)!studentRecordRadioButton.IsChecked)
+                    studentRecordRadioButton.IsChecked = true;
+                else
+                    studentRecordRadioButton_Checked(null, null);
+            }
         }
 
         private void studentRecordRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             leftSideFrame.Children.Clear();
-            StudentRecordLayout record = new StudentRecordLayout();
-            leftSideFrame.Children.Add(record);
+            leftSideFrame.Children.Add(MainHandlers.WindowManager.GetUserControl(UserControlTypes.StudentRecordLayout));
 
             rightSideFrame.Children.Clear();
-            if (!MainHandlers.WindowManager.IsAdmin)
-            {                               
-                StudentRecordTreeView listView = new StudentRecordTreeView();
-                rightSideFrame.Children.Add(listView);
-            }
-            else
-            {
-                AdminStudentTreeView listView = new AdminStudentTreeView();
-                rightSideFrame.Children.Add(listView);
-            }
+            rightSideFrame.Children.Add(MainHandlers.WindowManager.GetUserControl(UserControlTypes.StudentRecordTreeView));
             
         }
 
         private void courseRecordRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             leftSideFrame.Children.Clear();
-            CourseRecordLayout record = new CourseRecordLayout();
-            leftSideFrame.Children.Add(record);
+            leftSideFrame.Children.Add(MainHandlers.WindowManager.GetUserControl(UserControlTypes.CourseRecordLayout));
 
             rightSideFrame.Children.Clear();
-            CourseRecordTreeView listView = new CourseRecordTreeView();
-            rightSideFrame.Children.Add(listView);
+            rightSideFrame.Children.Add(MainHandlers.WindowManager.GetUserControl(UserControlTypes.CourseRecordTreeView));
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)

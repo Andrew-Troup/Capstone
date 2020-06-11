@@ -88,6 +88,11 @@ namespace CoreApplication.User_Interfaces.Peripherial
         {
             FormCompleted?.Invoke(this, new CustomEventArgs(e));
         }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            OnCompletedForm(new BsonDocument { { "CloseApplication", "true" } });
+        }
     }
 
     public class CustomEventArgs

@@ -4,6 +4,7 @@
     using CoreApplication.ModelHandlers.Records;
     using CoreApplication.Models.Records.Admin;
     using CoreApplication.Models.Records.Admin.Support;
+    using CoreApplication.User_Interfaces.Peripherial;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -27,8 +28,6 @@
         {
             InitializeComponent();
             Loaded += Page_Loaded;
-            if (((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).SelectedStudent != null)
-                SelectItem();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -48,9 +47,10 @@
             }
         }
 
-        private void SelectItem()
+        private void queryStudentsButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            QueryStudentDatabaseUserControl control = new QueryStudentDatabaseUserControl();
+            control.Show();
         }
     }
 }

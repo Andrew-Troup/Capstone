@@ -1,5 +1,6 @@
 ﻿using CoreApplication.ModelHandlers;
 using CoreApplication.ModelHandlers.Records;
+using CoreApplication.Models.Records.Class;
 using CoreApplication.Models.Records.Class.Base;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,22 @@ namespace CoreApplication.User_Interfaces.Left_Sides
 
         private void ClassRecords_UpdateUI(object sender, EventArgs e)
         {
-            classInformationGrid.DataContext = MainHandlers.WindowManager.ClassRecords.SelectedClass;
+            if (MainHandlers.WindowManager.ClassRecords.SelectedClass != null)
+            {
+                classInformationGrid.DataContext = MainHandlers.WindowManager.ClassRecords.SelectedClass;
+
+                Type type = MainHandlers.WindowManager.ClassRecords.SelectedClass.GetType();
+                if (type.Equals(typeof(OnlineClassRecordInformation)))
+                {
+                    faceToFaceClassInformationGrid.Visibility = Visibility.Collapsed;
+                    onlineClassInformationStackPanel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    faceToFaceClassInformationGrid.Visibility = Visibility.Visible;
+                    onlineClassInformationStackPanel.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
         private void CourseRecordLayout_Loaded(object sender, RoutedEventArgs e)

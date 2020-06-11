@@ -25,9 +25,50 @@
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <StackPanel x:Name="onlineClassInformationStackPanel" Orientation="Horizontal">
+                <Border BorderThickness="2">
+                    <Label Content="ClassUrl"/>
+                </Border>
+                <Border BorderThickness="2">
+                    <TextBox x:Name="classUrlTextBox"
+                             Background="White"
+                             IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
+                             TabIndex="1"
+                             Text="{Binding ClassUrl, Mode=TwoWay}"/>
+                </Border>
+            </StackPanel>
+            
+            <Grid Grid.Row="1" x:Name="faceToFaceClassInformationGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Grid.Column="0" Content="Classroom" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Border Grid.Row="0" Grid.Column="1" BorderThickness="2">
+                    <TextBox Background="White" 
+                                Text="{Binding ClassRoom, Mode=TwoWay}" 
+                                TabIndex="1"
+                                IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
+                                />
+                </Border>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Class Building" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Border Grid.Row="1" Grid.Column="1" BorderThickness="2">
+                    <TextBox Background="White" 
+                                Text="{Binding ClassBuilding, Mode=TwoWay}" 
+                                TabIndex="2"
+                                IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
+                                />
+                </Border>
+            </Grid>
         </Grid>
         
         <Border Grid.Row="2">
@@ -40,7 +81,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
                 <Label Grid.Row="0" Grid.Column="0" Content="Begin Date" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <Border Grid.Row="0" Grid.Column="1" BorderThickness="2">
                     <TextBox Background="White" 
@@ -112,6 +152,7 @@
             <Border Grid.Row="3" Grid.Column="1" BorderThickness="2">
                 <TextBlock Text="{Binding Description}" 
                            TextWrapping="WrapWithOverflow"
+                           MaxWidth="400"
                            Background="White"
                            IsEnabled="{Binding ElementName=editInformationToggleButton, Path=IsChecked}"
                            />
