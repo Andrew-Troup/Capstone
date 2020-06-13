@@ -3,6 +3,7 @@
     using Common.Models;
     using Common.Models.Login;
     using CoreApplication.ModelHandlers;
+    using CoreApplication.ModelHandlers.Query;
     using CoreApplication.ModelHandlers.Records;
     using CoreApplication.ModelHandlers.Records.Base;
     using CoreApplication.Models.Base;
@@ -44,6 +45,11 @@
         /// Stores the class record handler
         /// </summary>
         public ClassRecordHandler ClassRecords { get; set; }
+
+        /// <summary>
+        /// Handles the layer between the query ui and main.
+        /// </summary>
+        public QueryModelViewHandler QueryModel { get; set; }
 
         /// <summary>
         /// Tells the us if the user type is a student

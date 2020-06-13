@@ -18,6 +18,11 @@
         <Label Grid.Row="0" Content="Student's Classes" Height="Auto" HorizontalAlignment="Center"/>
         <TreeView Grid.Row="1" x:Name="studentClassesTreeView" Background="AliceBlue" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <TreeView.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}"/>
+                
                 <HierarchicalDataTemplate DataType="{x:Type support:TypeClassesPair}" ItemsSource="{Binding Classes}">
                     <StackPanel Orientation="Horizontal">
                         <Border BorderBrush="Black" BorderThickness="1">

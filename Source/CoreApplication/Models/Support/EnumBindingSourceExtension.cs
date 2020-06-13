@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using System.Windows.Markup;
 
@@ -48,6 +50,24 @@
             Array tempArray = Array.CreateInstance(actualEnumType, enumValues.Length + 1);
             enumValues.CopyTo(tempArray, 1);
             return tempArray;
+        }
+
+        private string GetDescription(object enumValue)
+        {
+            var descriptionAttribute = EnumType
+              .GetField(enumValue.ToString())
+              .GetCustomAttributes(typeof(DescriptionAttribute), false)
+              .FirstOrDefault() as DescriptionAttribute;
+
+            return descriptionAttribute != null
+              ? descriptionAttribute.Description
+              : enumValue.ToString();
+        }
+
+        public class EnumerationMember
+        {
+            public string Description { get; set; }
+            public object Value { get; set; }
         }
     }
 }

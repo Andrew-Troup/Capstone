@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CoreApplication.Models.Base
+﻿namespace CoreApplication.Models.Base
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class ValueChangedArgs
     {
         public string Text { get; set; }

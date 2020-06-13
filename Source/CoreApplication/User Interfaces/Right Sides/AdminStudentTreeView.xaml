@@ -15,15 +15,27 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Students List" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top"/>
+        <Label Content="Students List" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" FontSize="20"/>
 
-        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1">
-            <Button x:Name="queryStudentsButton" Click="queryStudentsButton_Click" Width="80">Query Students</Button>             
-        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Border BorderThickness="4">
+                <Button x:Name="queryStudentsButton" Click="queryStudentsButton_Click" Width="80">Query Students</Button>
+            </Border>
+
+            <Border BorderThickness="4">
+                <Button x:Name="clearQueryStudentsButton" Click="clearQueryStudentsButton_Click"  Width="80">Clear Query</Button>
+            </Border>
+        </StackPanel>
+        
 
         <Border Grid.Row="2" BorderThickness="5">
             <TreeView x:Name="adminTreeView" SelectedItemChanged="adminTreeView_SelectedItemChanged" Background="AliceBlue">
                 <TreeView.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"
+                     Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}"/>
+                    
                     <Style TargetType="TreeViewItem">
                         <Setter Property="IsSelected"
                                     Value="{Binding Path=IsSelected, Mode=TwoWay}" />
@@ -34,15 +46,7 @@
                             <Border BorderBrush="Black" BorderThickness="1">
                                 <StackPanel Orientation="Horizontal">
                                     <Border BorderThickness="5">
-                                        <TextBlock Text="Class Name:"/>
-                                    </Border>
-
-                                    <Border BorderThickness="5">
                                         <TextBlock Text="{Binding ClassName}"/>
-                                    </Border>
-
-                                    <Border BorderThickness="5">
-                                        <TextBlock Text="Class ID:"/>
                                     </Border>
 
                                     <Border BorderThickness="5">
@@ -62,43 +66,21 @@
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <DataTemplate DataType="{x:Type studentInformation:StudentRecordHandler}">
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="First Name: "/>
-                                    </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderThickness="5">
+                                    <TextBlock Text="{Binding PersonalInformation.FirstName}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
 
-                                    <Border BorderThickness="2">
-                                        <TextBlock Text="{Binding PersonalInformation.FirstName}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
+                                <Border BorderThickness="5">
+                                    <TextBlock Text="{Binding PersonalInformation.LastName }" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
 
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Last Name: "/>
-                                    </Border>
-
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding PersonalInformation.LastName }" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="Student ID: "/>
-                                    </Border>
-
-                                    <Border BorderThickness="2" Width="Auto">
-                                        <TextBlock Text="{Binding PersonalInformation.ID}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
+                                <Border BorderThickness="5">
+                                    <TextBlock Text="{Binding PersonalInformation.ID}" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </TreeView.Resources>
             </TreeView>

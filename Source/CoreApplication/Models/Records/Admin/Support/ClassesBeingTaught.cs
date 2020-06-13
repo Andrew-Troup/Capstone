@@ -23,6 +23,8 @@
 
         #region Properties
 
+        #region Public
+
         /// <summary>
         /// Class name being taught
         /// </summary>
@@ -31,12 +33,14 @@
         /// <summary>
         /// Class ID being taught.
         /// </summary>
-        public string ClassID { get; private set; }
+        public string ClassID { get; private set; }        
 
         /// <summary>
         /// List of students in the class.
         /// </summary>
         public ObservableCollection<StudentRecordHandler> StudentRecords { get; private set; }
+
+        #endregion
 
         #endregion
 
@@ -51,11 +55,21 @@
                 {
                     StudentRecords.Add(new StudentRecordHandler(MainHandlers.DatabaseHandler.GetStudent(doc[0].AsString)));
                 }
-                catch(Exception)
-                {
-
-                }
+                catch(Exception) {}
             }
+        }
+
+        /// <summary>
+        /// Loads in a series of classes being taught
+        /// </summary>
+        /// <param name="docs"></param>
+        public ClassesBeingTaught(List<BsonDocument> docs, string className, string classID)
+        {
+            ClassName = className;
+            ClassID = classID;
+            StudentRecords = new ObservableCollection<StudentRecordHandler>();
+            foreach (BsonDocument doc in docs)
+                StudentRecords.Add(new StudentRecordHandler(doc));
         }
     }
 }

@@ -28,6 +28,7 @@
         {
             InitializeComponent();
             Loaded += Page_Loaded;
+            clearQueryStudentsButton.Visibility = Visibility.Hidden;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -50,7 +51,23 @@
         private void queryStudentsButton_Click(object sender, RoutedEventArgs e)
         {
             QueryStudentDatabaseUserControl control = new QueryStudentDatabaseUserControl();
+            control.Closed += QueryStudentControl_Closed;
             control.Show();
+        }
+
+        private void QueryStudentControl_Closed(object sender, EventArgs e)
+        {
+            Page_Loaded(this, null);
+
+            if (MainHandlers.WindowManager.QueryModel != null)
+                clearQueryStudentsButton.Visibility = Visibility.Visible;
+        }
+
+        private void clearQueryStudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainHandlers.WindowManager.QueryModel = null;
+            ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).Record.RemoveQuery();
+            clearQueryStudentsButton.Visibility = Visibility.Hidden;
         }
     }
 }
