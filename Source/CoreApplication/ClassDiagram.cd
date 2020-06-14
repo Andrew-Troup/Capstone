@@ -1,14 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="CoreApplication.Models.Base.ValueChangedArgs" Collapsed="true">
-    <Position X="3.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
-      <FileName>Models\Base\UpdateDatabase.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CoreApplication.Models.Base.UpdateDatabase">
-    <Position X="1" Y="0.5" Width="1.5" />
+    <Position X="19.75" Y="13.25" Width="1.75" />
     <NestedTypes>
       <Delegate Name="CoreApplication.Models.Base.UpdateDatabase.UpdateDatabaseHandler" Collapsed="true">
         <TypeIdentifier>
@@ -20,9 +13,287 @@
       <HashCode>AEAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Base\UpdateDatabase.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Query.QueryDatabaseModel">
+    <Position X="12.5" Y="10.25" Width="1.75" />
+    <NestedTypes>
+      <Delegate Name="CoreApplication.Models.Query.QueryDatabaseModel.UpdateValue" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Query\QueryDatabaseModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAARAAACAQAEAAAQAwCAAAAAABgAQEASBAAAAAA=</HashCode>
+      <FileName>Models\Query\QueryDatabaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Admin.AdminRecord">
+    <Position X="9.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAIAAABAAAAAIAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\Records\Admin\AdminRecord.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Teaching" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Admin.Support.ClassesBeingTaught">
+    <Position X="12.75" Y="7.75" Width="2.5" />
+    <NestedTypes>
+      <Enum Name="CoreApplication.Models.Records.Admin.Support.ClassesBeingTaught.Positions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Records\Admin\Support\ClassesBeingTaught.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAAAAgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Records\Admin\Support\ClassesBeingTaught.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.Query.QueryModelHandler">
+    <Position X="9.25" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAABAgAAAgCAAAAAAAAMAAhAAQAAAAAAAAA=</HashCode>
+      <FileName>ModelHandlers\Query\QueryModelHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="QueryItems" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.Records.Base.BaseViewHandler">
+    <Position X="3" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAEAAABAAAAAA=</HashCode>
+      <FileName>ModelHandlers\Records\Base\BaseViewHandler.cs</FileName>
+    </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="ValueChangedArgs" />
+      <Property Name="PersonalInformation" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.Records.AdminRecordHandler">
+    <Position X="6.75" Y="7" Width="2" />
+    <AssociationLine Name="SelectedStudent" Type="CoreApplication.ModelHandlers.Records.StudentRecordHandler" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="7.438" />
+        <Point X="17.25" Y="7.438" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAgQAAABAAAQAAAAAAAAAAAAAAAAAAAAAAAIAEAABAA=</HashCode>
+      <FileName>ModelHandlers\Records\AdminRecordHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Record" />
+      <Property Name="SelectedStudent" />
+      <Property Name="QueryModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.Records.ClassRecordHandler">
+    <Position X="9.75" Y="0.75" Width="2" />
+    <NestedTypes>
+      <Enum Name="CoreApplication.ModelHandlers.Records.ClassRecordHandler.SortByTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ModelHandlers\Records\ClassRecordHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="CoreApplication.ModelHandlers.Records.ClassRecordHandler.FilterByTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ModelHandlers\Records\ClassRecordHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAgQAAAEAAEgAAGgECAAAAgAQAAAAAAAgAAAABAAAAA=</HashCode>
+      <FileName>ModelHandlers\Records\ClassRecordHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Classes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.Records.StudentRecordHandler">
+    <Position X="17.25" Y="6.5" Width="2.75" />
+    <InheritanceLine Type="CoreApplication.ModelHandlers.Records.Base.BaseViewHandler" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="6.688" />
+        <Point X="17.25" Y="6.688" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAAAA=</HashCode>
+      <FileName>ModelHandlers\Records\StudentRecordHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AcademicInformation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.MainHandlers">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <AssociationLine Name="DatabaseHandler" Type="Database.Handlers.DatabaseHandler" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="1.75" />
+        <Point X="2.312" Y="1.75" />
+        <Point X="2.312" Y="3.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.632" Y="0.376" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="WindowManager" Type="CoreApplication.ModelHandlers.MainWindowManager" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="1.75" />
+        <Point X="4.083" Y="1.75" />
+        <Point X="4.083" Y="2.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.688" Y="0.27" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelHandlers\MainHandlers.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DatabaseHandler" />
+      <Property Name="WindowManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Database.Handlers.DatabaseHandler">
+    <Position X="0.5" Y="3.25" Width="2" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Database" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CoreApplication.ModelHandlers.MainWindowManager">
+    <Position X="3.25" Y="2.5" Width="2" />
+    <AssociationLine Name="ClassRecords" Type="CoreApplication.ModelHandlers.Records.ClassRecordHandler" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="3.875" />
+        <Point X="9.75" Y="3.875" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.139" Y="0.134" Height="0.182" Width="1.191" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAIAAEAAAAAAAAAAAiAAQAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\MainWindowManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClassRecords" />
+      <Property Name="ViewHandler" />
+      <Property Name="CurrentUser" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Database.Communications.DatabaseCommunications">
+    <Position X="0.5" Y="5.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Class.Base.CourseRecordInformation">
+    <Position X="19.5" Y="1.5" Width="3" />
+    <InheritanceLine Type="CoreApplication.Models.Base.UpdateDatabase" ManuallyRouted="true">
+      <Path>
+        <Point X="20.688" Y="13.25" />
+        <Point X="20.688" Y="11.65" />
+        <Point X="20.75" Y="11.65" />
+        <Point X="20.75" Y="6.328" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AACAAAQAAAAkIAJEAAAAAAAgEQAgAAQAAAAAAEAECAA=</HashCode>
+      <FileName>Models\Records\Class\Base\CourseRecordInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Class.Support.DepartmentCourseInformationsPair">
+    <Position X="13.25" Y="1.5" Width="3.5" />
+    <AssociationLine Name="ClassRecords" Type="CoreApplication.Models.Records.Class.Base.CourseRecordInformation">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.562" Y="-0.496" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAADAQgAAAAAAAAAAAAAABgAQQAAAAACAA=</HashCode>
+      <FileName>Models\Records\Class\Support\DepartmentCourseInformationsPair.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ClassRecords" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Class.FaceToFaceClassRecordInformation">
+    <Position X="23.75" Y="4" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAABAAAgAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Records\Class\FaceToFaceClassRecordInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Class.OnlineClassRecordInformation">
+    <Position X="24" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Models\Records\Class\OnlineClassRecordInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Student.Support.TypeClassesPair">
+    <Position X="26" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Records\Student\Support\TypeClassesPair.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Classes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Student.ClassTakenInformation">
+    <Position X="25.75" Y="9.5" Width="2.75" />
+    <InheritanceLine Type="CoreApplication.Models.Base.UpdateDatabase" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.5" Y="14.562" />
+        <Point X="27.188" Y="14.562" />
+        <Point X="27.188" Y="12.982" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAEgAIAAAAAEQAAAAAAAAAAAAEACBA=</HashCode>
+      <FileName>Models\Records\Student\ClassTakenInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.Student.StudentAcademicInformation">
+    <Position X="21.5" Y="7" Width="3.25" />
+    <InheritanceLine Type="CoreApplication.Models.Base.UpdateDatabase" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="21.5" Y="14.562" />
+        <Point X="23.156" Y="14.562" />
+        <Point X="23.156" Y="11.252" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAAQBCAAAAAAAAAAgAAEIAAAAAAEIAAEgCCAAAAI=</HashCode>
+      <FileName>Models\Records\Student\StudentAcademicInformation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllClasses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CoreApplication.Models.Records.PersonalInformation">
+    <Position X="3.25" Y="10.5" Width="2.5" />
+    <InheritanceLine Type="CoreApplication.Models.Base.UpdateDatabase" FixedFromPoint="true">
+      <Path>
+        <Point X="20.625" Y="15.516" />
+        <Point X="20.625" Y="15.91" />
+        <Point X="5.094" Y="15.91" />
+        <Point X="5.094" Y="14.559" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAEAACCIAgAAAAAEQIAAAAAAAAAAAAAAAAAAEAAk=</HashCode>
+      <FileName>Models\Records\PersonalInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Common.Models.Login.UserLoginInformation">
+    <Position X="6.5" Y="0.5" Width="2" />
+    <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

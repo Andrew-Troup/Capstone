@@ -47,11 +47,6 @@
         public ClassRecordHandler ClassRecords { get; set; }
 
         /// <summary>
-        /// Handles the layer between the query ui and main.
-        /// </summary>
-        public QueryModelViewHandler QueryModel { get; set; }
-
-        /// <summary>
         /// Tells the us if the user type is a student
         /// </summary>
         public bool IsAdmin { get => (CurrentUser.UserType == UserTypes.Admin); }

@@ -1,5 +1,6 @@
 ﻿namespace CoreApplication.ModelHandlers.Records
 {
+    using CoreApplication.ModelHandlers.Query;
     using CoreApplication.ModelHandlers.Records.Base;
     using CoreApplication.Models.Records;
     using CoreApplication.Models.Records.Admin;
@@ -34,6 +35,11 @@
                 UpdateUI.Invoke(this, null);
             }
         }
+
+        /// <summary>
+        /// Handles the layer between the query ui and main.
+        /// </summary>
+        public QueryModelHandler QueryModel { get; set; }
 
         #endregion
 

@@ -59,13 +59,13 @@
         {
             Page_Loaded(this, null);
 
-            if (MainHandlers.WindowManager.QueryModel != null)
+            if (((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).QueryModel != null)
                 clearQueryStudentsButton.Visibility = Visibility.Visible;
         }
 
         private void clearQueryStudentsButton_Click(object sender, RoutedEventArgs e)
         {
-            MainHandlers.WindowManager.QueryModel = null;
+            ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).QueryModel = null;
             ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).Record.RemoveQuery();
             clearQueryStudentsButton.Visibility = Visibility.Hidden;
         }

@@ -13,7 +13,7 @@
     using System.Text;
     using System.Threading;
 
-    class QueryModelViewHandler
+    class QueryModelHandler
     {
         #region Properties
 
@@ -41,7 +41,7 @@
 
         #endregion
 
-        public QueryModelViewHandler()
+        public QueryModelHandler()
         {
             QueryLists = new List<List<QueryDatabaseModel>>();
             QueryLists.Add(new List<QueryDatabaseModel>() { new QueryDatabaseModel() });

@@ -26,17 +26,20 @@
     public partial class QueryStudentDatabaseUserControl : Window
     {
         #region Variables
-
+        
+        private QueryModelHandler _handler;
+        
         #endregion
 
         public QueryStudentDatabaseUserControl()
         {
             InitializeComponent();
             Title = "Query Database";
-            if(MainHandlers.WindowManager.QueryModel == null)
-                MainHandlers.WindowManager.QueryModel = new QueryModelViewHandler();
+            if(((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).QueryModel == null)
+                ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).QueryModel = new QueryModelHandler();
 
-            queryListView.ItemsSource = MainHandlers.WindowManager.QueryModel.QueryItems;            
+            _handler = ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).QueryModel;
+            queryListView.ItemsSource = _handler.QueryItems;            
         }
 
         #region Methods
@@ -47,26 +50,26 @@
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListView list = ((ListView)sender);
-            MainHandlers.WindowManager.QueryModel.SelectedIndexes = list.SelectedItems.Cast<QueryDatabaseModel>().ToList();
+            _handler.SelectedIndexes = list.SelectedItems.Cast<QueryDatabaseModel>().ToList();
         }
 
         #region Insert
 
         private void InsertAfter_MenuItemClick(object sender, EventArgs e)
         {
-            MainHandlers.WindowManager.QueryModel.InsertQuery(Models.InsertLocation.After);
+            _handler.InsertQuery(Models.InsertLocation.After);
             UpdateForm();
         }
 
         private void InsertBefore_MenuItemClick(object sender, EventArgs e)
         {
-            MainHandlers.WindowManager.QueryModel.InsertQuery(Models.InsertLocation.Before);
+            _handler.InsertQuery(Models.InsertLocation.Before);
             UpdateForm();
         }
 
         private void InsertInto_MenuItemClick(object sender, EventArgs e)
         {
-            MainHandlers.WindowManager.QueryModel.InsertQuery(Models.InsertLocation.Into);
+            _handler.InsertQuery(Models.InsertLocation.Into);
             UpdateForm();
         }
 
@@ -74,7 +77,7 @@
 
         private void DeleteRow_MenuItemClick(object sender, EventArgs e)
         {
-            MainHandlers.WindowManager.QueryModel.DeleteQuery();
+            _handler.DeleteQuery();
             UpdateForm();
         }
 
@@ -82,7 +85,8 @@
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            MainHandlers.WindowManager.QueryModel = null;
+            ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).QueryModel = null;
+            _handler = null;
             Close();
         }
 
@@ -90,7 +94,7 @@
         {
             try
             {
-                ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).Record.AddQuery(MainHandlers.WindowManager.QueryModel.PerformQuery());
+                ((AdminRecordHandler)MainHandlers.WindowManager.ViewHandler).Record.AddQuery(_handler.PerformQuery());
                 Close();
             }
             catch(QueryImproperLayoutException a)
@@ -108,7 +112,7 @@
         /// </summary>
         private void UpdateForm()
         {
-            queryListView.ItemsSource = MainHandlers.WindowManager.QueryModel.QueryItems;
+            queryListView.ItemsSource = _handler.QueryItems;
         }
 
         private void FindIssue(QueryImproperLayoutException e)
